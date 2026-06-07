@@ -1,0 +1,242 @@
+/* variaveis de cor*/
+
+:root {
+    --bg-color: #08111f;
+    --text-primary: #ffffff;
+    --text-secondary: #a7b0be;
+    --text-highlight: #77f54d;
+    --button-primary-bg: #77f54d;
+    --button-primary-text: #08111f;
+    --button-secondary-border: rgba(119, 245, 77, 0.35);
+    --button-secondary-text: #ffffff;
+    --pill-border: rgba(119, 245, 77, 0.35);
+    --transition-speed: 0.3s;
+}
+
+/* seletor de temas */
+.theme-switcher{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 8px;
+    padding: 6px;
+    background: rgba(255,255,255,.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 999px;
+}
+
+.theme-switcher input{
+    display: none;
+}
+
+.theme-switcher label{
+    padding: 10px 18px;
+    border-radius: 999px;
+    cursor: pointer;
+    color: var(--text-primary);
+    transition: .3s;
+}
+
+.theme-switcher input:checked + label{
+    background: var(--text-highlight);
+    color: #000;
+}
+
+/*-------Tema1(Inicial)-------*/
+
+body.tema1 {
+    --bg-color: #08111f;
+    --text-primary: #ffffff;
+    --text-secondary: #a7b0be;
+    --text-highlight: #77f54d;
+    --button-primary-bg: #77f54d;
+    --button-primary-text: #08111f;
+    --button-secondary-border: rgba(119, 245, 77, 0.35);
+    --button-secondary-text: #ffffff;
+    --pill-border: rgba(119, 245, 77, 0.35);
+}
+
+/*-------Tema2(Azul)-------*/
+
+body.tema2 {
+    --bg-color: #ffffff;
+    --text-primary: #111111;
+    --text-secondary: #555555;
+    --text-highlight: #0066ff;
+    --button-primary-bg: #0066ff;
+    --button-primary-text: #ffffff;
+    --button-secondary-border: #0066ff;
+    --button-secondary-text: #0066ff;
+    --pill-border: #0066ff;
+}
+
+/*-------Tema3(Ñ sei a cor)-------*/
+
+body.tema3 {
+    --bg-color: #1a0d2e;
+    --text-primary: #ffffff;
+    --text-secondary: #d0c9dd;
+    --text-highlight: #c084fc;
+    --button-primary-bg: #c084fc;
+    --button-primary-text: #1a0d2e;
+    --button-secondary-border: #c084fc;
+    --button-secondary-text: #ffffff;
+    --pill-border: #c084fc;
+}
+
+/* Inicio */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+
+    background: var(--bg-color);
+    color: var(--text-primary);
+
+    transition:
+        background-color var(--transition-speed),
+        color var(--transition-speed);
+
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 2rem;
+}
+
+/* --------PRINCIPAL-------- */
+
+.container {
+    width: 100%;
+    max-width: 1400px;
+    text-align: center;
+}
+
+/* --------SPECTO-------- */
+
+.title-i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 12px 28px;
+
+    border: 1px solid var(--pill-border);
+    border-radius: 999px;
+
+    font-family: "Geist", sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+
+    color: var(--text-primary);
+
+    margin-bottom: 2.5rem;
+}
+
+/*--------TÍTULOS--------*/
+
+.subtitle-i,
+.subtitle2-i {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-weight: 700;
+    font-size: clamp(4rem, 8vw, 7rem);
+    line-height: 0.95;
+    margin: 0;
+}
+
+.subtitle-i {
+    color: var(--text-primary);
+}
+
+.subtitle2-i {
+    color: var(--text-highlight);
+    margin-bottom: 2rem;
+}
+
+/* ------DESCRITIVO------ */
+
+.description {
+    max-width: 900px;
+    margin: 0 auto 3rem auto;
+    color: var(--text-secondary);
+    font-size: 1.25rem;
+    line-height: 1.8;
+}
+
+/*--------BOTÕES--------*/
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.btn-primary,
+.btn-secondary {
+    border: none;
+    padding: 18px 32px;
+    border-radius: 14px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all var(--transition-speed);
+}
+
+.btn-primary {
+    background: var(--button-primary-bg);
+    color: var(--button-primary-text);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--button-secondary-text);
+    border: 1px solid var(--button-secondary-border);
+}
+
+.btn-secondary:hover {
+    transform: translateY(-2px);
+}
+
+/*--------RESPONSIVO--------*/
+
+@media (max-width: 768px) {
+    .subtitle-i,
+    .subtitle2-i {
+        font-size: clamp(2.8rem, 10vw, 4.5rem);
+    }
+
+    .description {
+        font-size: 1rem;
+    }
+
+    .title-i {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+
+    .buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+        max-width: 350px;
+    }
+}
