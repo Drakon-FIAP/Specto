@@ -429,6 +429,379 @@ main {
 }
 
 /* ============================================
+   PROBLEMAS SECTION
+============================================ */
+
+.problemas-section {
+    position: relative;
+    overflow: hidden;
+    padding: 10rem 0;
+    border-top: 1px solid var(--card-border);
+}
+
+.problemas-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 4rem;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8rem;
+    align-items: center;
+
+    text-align: left;
+}
+
+.problemas-left {
+    max-width: 650px;
+}
+
+.problemas-tag {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .2em;
+
+    color: var(--text-highlight);
+}
+
+.problemas-title {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: clamp(3rem, 5vw, 5rem);
+    line-height: .95;
+    font-weight: 800;
+
+    color: var(--text-primary);
+}
+
+.problemas-right {
+    max-width: 520px;
+}
+
+.problemas-right p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    line-height: 1.9;
+}
+
+.problemas-right p + p {
+    margin-top: 1.5rem;
+}
+
+.problemas-orbit {
+    position: absolute;
+    width: 900px;
+    height: 900px;
+    right: -450px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    border: 2px dashed var(--text-highlight);
+    animation: orbitRotate 40s linear infinite;
+    pointer-events: none;
+}
+
+.problemas-orbit::before {
+    content: "";
+    position: absolute;
+    inset: 40px;
+    border-radius: 50%;
+    border: 1px dashed var(--text-highlight);
+    animation: orbitRotateReverse 30s linear infinite;
+}
+
+.problemas-orbit::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--text-highlight);
+    box-shadow:
+        0 0 10px var(--text-highlight),
+        0 0 25px var(--text-highlight);
+}
+
+@keyframes orbitRotate {
+    from {
+        transform: translateY(-50%) rotate(0deg);
+    }
+    to {
+        transform: translateY(-50%) rotate(360deg);
+    }
+}
+
+@keyframes orbitRotateReverse {
+    from {
+        transform: rotate(360deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+/* ==========================================
+   OBJETIVOS
+========================================== */
+
+.objetivos-section {
+    position: relative;
+    padding: 10rem 0;
+    overflow: hidden;
+}
+
+.objetivos-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 4rem;
+    text-align: center;
+}
+
+.objetivos-title {
+    max-width: 900px;
+    margin: 1rem auto 2rem;
+
+    font-size: clamp(3rem, 6vw, 5rem);
+    line-height: .95;
+    font-weight: 800;
+}
+
+.objetivos-description {
+    max-width: 800px;
+    margin: 0 auto;
+
+    color: var(--text-secondary);
+    font-size: 1.15rem;
+    line-height: 1.9;
+}
+
+/* ==========================================
+   FLUXO
+========================================== */
+
+.specto-flow {
+    margin-top: 6rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.flow-card {
+    width: 320px;
+
+    padding: 2rem;
+
+    background: rgba(255,255,255,.02);
+
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+
+    backdrop-filter: blur(20px);
+
+    transition: .3s;
+}
+
+.flow-card:hover {
+    transform: translateY(-6px);
+}
+
+.flow-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.flow-card h3 {
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+}
+
+.flow-card p {
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
+
+/* ==========================================
+   PROXI
+========================================== */
+
+.flow-card-proxi {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Dispositivo */
+
+.proxi-device {
+    width: 100px;
+    height: 280px;
+
+    position: relative;
+    overflow: hidden;
+
+    margin: 1rem auto 1.5rem;
+    z-index: 2;
+}
+
+.proxi-device img {
+    position: absolute;
+
+    width: 680px; /* antes 260px */
+
+    top: 0;
+    left: -190px; /* reajusta após aumentar */
+
+}
+
+/* Órbitas */
+
+.proxi-orbit {
+    position: absolute;
+
+    width: 420px;
+    height: 420px;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+    border: 1px dashed var(--text-highlight);
+
+    animation: orbit 25s linear infinite;
+}
+
+.proxi-orbit::before {
+    content: "";
+
+    position: absolute;
+    inset: 40px;
+
+    border-radius: 50%;
+    border: 1px dashed var(--text-highlight);
+}
+
+.proxi-orbit::after {
+    content: "";
+
+    position: absolute;
+
+    width: 12px;
+    height: 12px;
+
+    top: 0;
+    left: 50%;
+
+    border-radius: 50%;
+    background: var(--text-highlight);
+
+    box-shadow:
+        0 0 10px var(--text-highlight),
+        0 0 20px var(--text-highlight);
+}
+
+/* ==========================================
+   SETAS
+========================================== */
+
+.flow-arrow {
+    font-size: 2.5rem;
+    color: var(--text-highlight);
+}
+
+/* ==========================================
+   LISTA
+========================================== */
+
+.objetivos-list {
+    margin-top: 6rem;
+
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.objetivo-item {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    padding: 1.5rem 0;
+
+    border-bottom: 1px solid var(--card-border);
+
+    text-align: left;
+}
+
+.objetivo-item span {
+    color: var(--text-highlight);
+
+    font-weight: 700;
+    font-size: 1.2rem;
+
+    min-width: 50px;
+}
+
+.objetivo-item p {
+    color: var(--text-primary);
+}
+
+/* ==========================================
+   ANIMAÇÕES
+========================================== */
+
+@keyframes orbit {
+
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+
+}
+
+/* ==========================================
+   RESPONSIVO
+========================================== */
+
+@media (max-width: 1100px) {
+
+    .specto-flow {
+        flex-direction: column;
+    }
+
+    .flow-arrow {
+        transform: rotate(90deg);
+    }
+
+    .flow-card {
+        width: 100%;
+        max-width: 500px;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .objetivos-container {
+        padding: 0 2rem;
+    }
+
+    .objetivos-title {
+        font-size: 3rem;
+    }
+
+}
+
+/* ============================================
    FEATURES SECTION
    ============================================ */
 
@@ -446,15 +819,13 @@ main {
 
 .section-tag {
     display: inline-block;
-    background: rgba(119, 245, 77, 0.1);
-    color: var(--text-highlight);
-    font-size: 0.75rem;
+    margin-bottom: 1.5rem;
+
+    font-size: .75rem;
     font-weight: 700;
-    padding: 0.3rem 0.9rem;
-    border-radius: 999px;
-    letter-spacing: 0.08em;
-    margin-bottom: 1rem;
-    border: 1px solid var(--pill-border);
+    letter-spacing: .2em;
+
+    color: var(--text-highlight);
 }
 
 .section-title {

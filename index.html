@@ -6,7 +6,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/Specto/assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <title>Specto - Inteligência Espacial para o Agro</title>
 </head>
 <body class="tema1">
@@ -68,11 +68,114 @@
                 </div>
             </div>
         </div>
+        <section class="problemas-section" id="problems">
+            <div class="problemas-orbit"></div>
+
+            <div class="problemas-container">
+                <div class="problemas-left">
+                    <span class="problemas-tag">PROBLEMA</span>
+
+                    <h2 class="problemas-title">
+                        O monitoramento orbital gera milhares de dados.
+                        Mas quase nenhuma informação útil.
+                    </h2>
+                </div>
+
+                <div class="problemas-right">
+                    <p>
+                        Produtores, seguradoras e gestores públicos têm acesso
+                        a imagens de satélite diariamente, mas transformar esses
+                        dados em decisões práticas ainda exige especialistas,
+                        softwares complexos e muito tempo de processamento.
+                    </p>
+
+                    <p>
+                        O resultado é um cenário onde informações críticas
+                        chegam tarde demais, aumentando riscos operacionais,
+                        perdas financeiras e ineficiência na gestão territorial.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <section class="objetivos-section" id="objetivos">
+            <div class="objetivos-container">
+                <span class="section-tag">OBJETIVOS</span>
+                <h2 class="objetivos-title">
+                    Conectando o que o satélite vê ao que realmente acontece no solo.
+                </h2>
+                <p class="objetivos-description">
+                    Enquanto o Sentinel-2 monitora grandes áreas da superfície terrestre,
+                    o Proxi realiza a coleta local de temperatura, luminosidade e umidade
+                    do solo. Juntos, eles criam uma camada de dupla validação capaz de
+                    transformar imagens orbitais em evidências confiáveis para tomadas
+                    de decisão.
+                </p>
+                <div class="specto-flow">
+                    <div class="flow-card">
+                        <div class="flow-icon">
+                            🛰️
+                        </div>
+                        <h3>Sentinel-2</h3>
+                        <p>
+                            Captura dados orbitais e índices espectrais como NDVI,
+                            NDWI e NBR em escala territorial.
+                        </p>
+                    </div>
+                    <div class="flow-arrow">
+                        →
+                    </div>
+                    <div class="flow-card flow-card-proxi">
+                        <div class="proxi-orbit"></div>
+                        <div class="proxi-device">
+                            <img src="assets/img/proxi.png" 
+                            alt="Dispositivo Proxi utilizado para validar dados orbitais através da coleta local de temperatura, luminosidade e umidade do solo.">
+                        </div>
+
+                        <h3>Proxi</h3>
+                        <p>
+                            Realiza a validação local dos dados coletados pelo satélite
+                            utilizando sensores instalados em campo.
+                        </p>
+                    </div>
+                    <div class="flow-arrow">
+                        →
+                    </div>
+                    <div class="flow-card">
+                        <div class="flow-icon">
+                            📄
+                        </div>
+                        <h3>Laudo Specto</h3>
+                        <p>
+                            Converte dados complexos em informações acessíveis para
+                            agricultores, gestores públicos e pesquisadores.
+                        </p>
+                    </div>
+                </div>
+                <div class="objetivos-list">
+                    <div class="objetivo-item">
+                        <span>01</span>
+                        <p>Democratizar o acesso a dados orbitais.</p>
+                    </div>
+                    <div class="objetivo-item">
+                        <span>02</span>
+                        <p>Auxiliar decisões ambientais e agrícolas.</p>
+                    </div>
+                    <div class="objetivo-item">
+                        <span>03</span>
+                        <p>Validar informações espaciais com sensores locais.</p>
+                    </div>
+                    <div class="objetivo-item">
+                        <span>04</span>
+                        <p>Gerar laudos territoriais acessíveis em português.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- Seção de Features -->
         <section class="features-section" id="features">
             <div class="features-container">
-                <div class="section-tag reveal-up">Capacidades</div>
+                <div class="section-tag reveal-up">CAPACIDADES</div>
                 <h2 class="section-title reveal-up">Tudo que você precisa para <span class="highlight-text">monitorar</span> sua área</h2>
                 <div class="features-grid">
                     <div class="feature-card reveal-up" style="animation-delay:0.05s">
@@ -144,7 +247,7 @@
         <section class="demo-section" id="dashboard-demo">
             <div class="container demo-container">
                 <div class="demo-header">
-                    <span class="demo-badge reveal-fade">Demonstração ao Vivo</span>
+                    <span class="section-tag">DEMONSTRAÇÃO DASHBOARD</span>
                     <h2 class="demo-title reveal-up">Um olhar por dentro da <span class="highlight-text">plataforma</span></h2>
                     <p class="demo-subtitle reveal-up">Monitore índices espectrais, clima e alertas em tempo real. Interface projetada para decisões rápidas e precisas.</p>
                 </div>
@@ -481,7 +584,6 @@
             </div>
             <div class="footer-bottom">
                 <div class="footer-copy">© 2026 Specto · Inteligência Espacial para o Agro</div>
-                <div class="footer-made">Feito com 🌱 para o campo brasileiro</div>
             </div>
         </footer>
     </main>
@@ -583,6 +685,6 @@
         </div>
     </div>
 
-    <script src="/Specto/assets/scripts/script.js"></script>
+    <script src="assets/scripts/script.js"></script>
 </body>
 </html>
