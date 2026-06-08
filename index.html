@@ -6,49 +6,166 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="/Specto/assets/css/style.css">
     <title>Specto - Inteligência Espacial para o Agro</title>
 </head>
 <body class="tema1">
+
+    <!-- Barra de progresso de scroll -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Seletor de Temas -->
     <div class="theme-switcher">
         <input type="radio" id="tema1" name="tema" checked>
         <label for="tema1">Space</label>
-
         <input type="radio" id="tema2" name="tema">
         <label for="tema2">Light</label>
-
         <input type="radio" id="tema3" name="tema">
         <label for="tema3">Purple</label>
     </div>
-    
+
+    <!-- Sistema de Toasts -->
+    <div class="toast-container" id="toastContainer"></div>
+
     <main>
         <!-- Hero Section -->
         <div class="container hero">
-            <div class="title-i">SPECTO</div>
-            <h1 class="subtitle-i">O dado que estava no espaço.</h1>
-            <h1 class="subtitle2-i">O laudo que chegou até você.</h1>
-            <p class="description">
+            <div class="title-i reveal-fade">SPECTO</div>
+            <h1 class="subtitle-i reveal-fade" style="animation-delay:0.1s">O dado que estava no espaço.</h1>
+            <h1 class="subtitle2-i reveal-fade" style="animation-delay:0.2s">O laudo que chegou até você.</h1>
+            <p class="description reveal-fade" style="animation-delay:0.3s">
                 Transformamos imagens de satélite em informações acessíveis para produtores,
                 gestores públicos e organizações que precisam tomar decisões com confiança.
             </p>
-            <div class="buttons">
-                <button class="btn-primary">Gerar meu laudo</button>
-                <button class="btn-secondary">Ver demonstração</button>
+            <div class="buttons reveal-fade" style="animation-delay:0.4s">
+                <button class="btn-primary" id="btnGerarLaudo">
+                    <span class="btn-text">Gerar meu laudo</span>
+                    <span class="btn-loading" style="display:none">⏳ Carregando...</span>
+                </button>
+                <button class="btn-secondary" id="btnVerDemo">Ver demonstração</button>
+            </div>
+
+            <!-- Stats hero -->
+            <div class="hero-stats reveal-fade" style="animation-delay:0.5s">
+                <div class="hero-stat">
+                    <span class="hero-stat-value" data-target="2400">0</span><span class="hero-stat-suffix">+</span>
+                    <span class="hero-stat-label">Laudos gerados</span>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat">
+                    <span class="hero-stat-value" data-target="180">0</span><span class="hero-stat-suffix">M ha</span>
+                    <span class="hero-stat-label">Monitorados</span>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat">
+                    <span class="hero-stat-value" data-target="12">0</span><span class="hero-stat-suffix"> sat</span>
+                    <span class="hero-stat-label">Satélites ativos</span>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat">
+                    <span class="hero-stat-value" data-target="98">0</span><span class="hero-stat-suffix">%</span>
+                    <span class="hero-stat-label">Precisão</span>
+                </div>
             </div>
         </div>
+
+        <!-- Seção de Features -->
+        <section class="features-section" id="features">
+            <div class="features-container">
+                <div class="section-tag reveal-up">Capacidades</div>
+                <h2 class="section-title reveal-up">Tudo que você precisa para <span class="highlight-text">monitorar</span> sua área</h2>
+                <div class="features-grid">
+                    <div class="feature-card reveal-up" style="animation-delay:0.05s">
+                        <div class="feature-icon">🛰️</div>
+                        <h3 class="feature-title">Imagens Satelitais</h3>
+                        <p class="feature-desc">Acesso a imagens Sentinel-2, Landsat-8 e Planet com resolução de até 3 metros. Cobertura diária para áreas prioritárias.</p>
+                        <div class="feature-tags">
+                            <span class="feature-tag">Sentinel-2</span>
+                            <span class="feature-tag">Landsat-8</span>
+                            <span class="feature-tag">10m res.</span>
+                        </div>
+                    </div>
+                    <div class="feature-card reveal-up" style="animation-delay:0.1s">
+                        <div class="feature-icon">🌿</div>
+                        <h3 class="feature-title">Índices Espectrais</h3>
+                        <p class="feature-desc">Cálculo automático de NDVI, NDWI, NBR, EVI e mais de 15 índices espectrais com histórico completo e tendências.</p>
+                        <div class="feature-tags">
+                            <span class="feature-tag">NDVI</span>
+                            <span class="feature-tag">NDWI</span>
+                            <span class="feature-tag">NBR</span>
+                            <span class="feature-tag">EVI</span>
+                        </div>
+                    </div>
+                    <div class="feature-card reveal-up" style="animation-delay:0.15s">
+                        <div class="feature-icon">⚡</div>
+                        <h3 class="feature-title">Alertas em Tempo Real</h3>
+                        <p class="feature-desc">Sistema inteligente de alertas para queimadas, degradação vegetal, inundações e anomalias climáticas com notificações instantâneas.</p>
+                        <div class="feature-tags">
+                            <span class="feature-tag">Queimadas</span>
+                            <span class="feature-tag">Seca</span>
+                            <span class="feature-tag">Inundação</span>
+                        </div>
+                    </div>
+                    <div class="feature-card reveal-up" style="animation-delay:0.2s">
+                        <div class="feature-icon">📋</div>
+                        <h3 class="feature-title">Laudos Técnicos</h3>
+                        <p class="feature-desc">Relatórios PDF completos gerados automaticamente com análise técnica, mapas temáticos e recomendações baseadas em IA.</p>
+                        <div class="feature-tags">
+                            <span class="feature-tag">PDF</span>
+                            <span class="feature-tag">IA</span>
+                            <span class="feature-tag">Automático</span>
+                        </div>
+                    </div>
+                    <div class="feature-card reveal-up" style="animation-delay:0.25s">
+                        <div class="feature-icon">🗺️</div>
+                        <h3 class="feature-title">Mapeamento de Áreas</h3>
+                        <p class="feature-desc">Delimite talhões, áreas de preservação e zonas de manejo com precisão centimétrica usando nosso editor vetorial.</p>
+                        <div class="feature-tags">
+                            <span class="feature-tag">GeoJSON</span>
+                            <span class="feature-tag">Shapefile</span>
+                            <span class="feature-tag">KML</span>
+                        </div>
+                    </div>
+                    <div class="feature-card reveal-up" style="animation-delay:0.3s">
+                        <div class="feature-icon">📊</div>
+                        <h3 class="feature-title">Análise Histórica</h3>
+                        <p class="feature-desc">Série temporal de até 10 anos com comparações sazonais, detecção de tendências e análise de correlação climática.</p>
+                        <div class="feature-tags">
+                            <span class="feature-tag">10 anos</span>
+                            <span class="feature-tag">Sazonalidade</span>
+                            <span class="feature-tag">Tendências</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- Seção de Demonstração do Dashboard -->
         <section class="demo-section" id="dashboard-demo">
             <div class="container demo-container">
                 <div class="demo-header">
-                    <span class="demo-badge">Demonstração ao Vivo</span>
-                    <h2 class="demo-title">Um olhar por dentro da <span class="highlight-text">plataforma</span></h2>
-                    <p class="demo-subtitle">Monitore índices espectrais, clima e alertas em tempo real. Interface projetada para decisões rápidas e precisas.</p>
+                    <span class="demo-badge reveal-fade">Demonstração ao Vivo</span>
+                    <h2 class="demo-title reveal-up">Um olhar por dentro da <span class="highlight-text">plataforma</span></h2>
+                    <p class="demo-subtitle reveal-up">Monitore índices espectrais, clima e alertas em tempo real. Interface projetada para decisões rápidas e precisas.</p>
+                </div>
+
+                <!-- Filtro de período -->
+                <div class="demo-filter-bar reveal-fade">
+                    <span class="filter-label">Período:</span>
+                    <div class="filter-pills">
+                        <button class="filter-pill active" data-period="7d">7 dias</button>
+                        <button class="filter-pill" data-period="30d">30 dias</button>
+                        <button class="filter-pill" data-period="90d">3 meses</button>
+                        <button class="filter-pill" data-period="1y">1 ano</button>
+                    </div>
+                    <span class="filter-update">
+                        <span class="live-dot"></span> Atualizado há 3 min
+                    </span>
                 </div>
 
                 <!-- Cards de Métricas -->
                 <div class="demo-cards-row">
-                    <div class="demo-card">
+                    <div class="demo-card reveal-up" style="animation-delay:0.05s">
                         <div class="demo-card-header">
                             <div>
                                 <div class="demo-card-label"><span class="demo-dot ndvi-dot"></span>NDVI</div>
@@ -56,13 +173,14 @@
                             </div>
                             <div class="demo-icon-placeholder">🌿</div>
                         </div>
-                        <div class="demo-card-value ndvi-value">0.84</div>
-                        <div class="demo-card-status status-excelente">Excelente</div>
+                        <div class="demo-card-value ndvi-value" id="valNDVI">0.00</div>
+                        <div class="demo-card-status status-excelente">▲ +0.12 vs. mês anterior</div>
                         <div class="demo-mini-chart">
                             <canvas id="demoMiniNDVI" width="200" height="40"></canvas>
                         </div>
+                        <div class="demo-card-tooltip">Normalised Difference Vegetation Index · Escala: -1 a +1</div>
                     </div>
-                    <div class="demo-card">
+                    <div class="demo-card reveal-up" style="animation-delay:0.1s">
                         <div class="demo-card-header">
                             <div>
                                 <div class="demo-card-label"><span class="demo-dot ndwi-dot"></span>NDWI</div>
@@ -70,13 +188,14 @@
                             </div>
                             <div class="demo-icon-placeholder">💧</div>
                         </div>
-                        <div class="demo-card-value ndwi-value">0.67</div>
-                        <div class="demo-card-status status-estavel">Estável</div>
+                        <div class="demo-card-value ndwi-value" id="valNDWI">0.00</div>
+                        <div class="demo-card-status status-estavel">→ Estável · sem variação</div>
                         <div class="demo-mini-chart">
                             <canvas id="demoMiniNDWI" width="200" height="40"></canvas>
                         </div>
+                        <div class="demo-card-tooltip">Normalised Difference Water Index · Escala: -1 a +1</div>
                     </div>
-                    <div class="demo-card">
+                    <div class="demo-card reveal-up" style="animation-delay:0.15s">
                         <div class="demo-card-header">
                             <div>
                                 <div class="demo-card-label"><span class="demo-dot nbr-dot"></span>NBR</div>
@@ -84,13 +203,14 @@
                             </div>
                             <div class="demo-icon-placeholder">🔥</div>
                         </div>
-                        <div class="demo-card-value nbr-value">0.05</div>
-                        <div class="demo-card-status status-seguro">Sem risco</div>
+                        <div class="demo-card-value nbr-value" id="valNBR">0.00</div>
+                        <div class="demo-card-status status-seguro">✓ Baixo risco · zona segura</div>
                         <div class="demo-mini-chart">
                             <canvas id="demoMiniNBR" width="200" height="40"></canvas>
                         </div>
+                        <div class="demo-card-tooltip">Normalised Burn Ratio · Quanto menor, melhor</div>
                     </div>
-                    <div class="demo-card">
+                    <div class="demo-card reveal-up clima-card" style="animation-delay:0.2s">
                         <div class="demo-card-header">
                             <div>
                                 <div class="demo-card-label"><span class="demo-dot clima-dot"></span>Clima Atual</div>
@@ -102,80 +222,367 @@
                             <div class="clima-row"><span>Temperatura</span><strong>29°C</strong></div>
                             <div class="clima-row"><span>Umidade</span><strong>72%</strong></div>
                             <div class="clima-row"><span>Chuva</span><strong>12mm</strong></div>
+                            <div class="clima-row"><span>Vento</span><strong>14 km/h</strong></div>
+                            <div class="clima-row"><span>UV</span><strong>Alto (8)</strong></div>
                         </div>
+                        <div class="demo-card-tooltip">Fonte: INMET · Estação automática mais próxima</div>
                     </div>
                 </div>
 
-                <!-- Grid Mapa e Alertas -->
+                <!-- Grid Mapa + Alertas -->
                 <div class="demo-grid">
-                    <div class="demo-map-panel">
+                    <div class="demo-map-panel reveal-up">
                         <div class="demo-panel-header">
                             <span>🗺️ Mapa de Índices</span>
-                            <span class="demo-layer-badge">Camada: Vegetação (NDVI)</span>
+                            <div class="map-layer-controls">
+                                <button class="map-layer-btn active" data-layer="ndvi">NDVI</button>
+                                <button class="map-layer-btn" data-layer="ndwi">NDWI</button>
+                                <button class="map-layer-btn" data-layer="nbr">NBR</button>
+                                <button class="map-layer-btn" data-layer="rgb">RGB</button>
+                            </div>
                         </div>
                         <div class="demo-map-placeholder" id="demoMap">
                             <div class="map-grain"></div>
-                            <div class="map-legend">🌍 Região do Cerrado - Última passagem: 14/05/2026</div>
-                            <div class="simulated-polygon"></div>
-                            <div class="simulated-polygon2"></div>
+                            <div class="map-legend" id="mapLegend">🌍 Cerrado · Última passagem: 14/05/2026</div>
+                            <div class="simulated-polygon" id="mapBlob1"></div>
+                            <div class="simulated-polygon2" id="mapBlob2"></div>
+                            <!-- Escala de cores do mapa -->
+                            <div class="map-colorscale" id="mapColorscale">
+                                <div class="colorscale-bar" id="colorscaleBar"></div>
+                                <div class="colorscale-labels">
+                                    <span id="csMin">0.0</span>
+                                    <span id="csMax">1.0</span>
+                                </div>
+                            </div>
+                            <!-- Coordenadas no hover -->
+                            <div class="map-coords" id="mapCoords">-12.543°S  55.781°W</div>
                         </div>
                         <div class="demo-map-footer">
                             <span class="map-tag">🛰️ Sentinel-2B</span>
                             <span class="map-tag">📅 14/05/2026</span>
-                            <span class="map-tag">📍 Resolução: 10m</span>
+                            <span class="map-tag">📍 10m/pixel</span>
+                            <span class="map-tag">☁️ 0% nuvens</span>
                         </div>
                     </div>
-                    <div class="demo-alerts-panel">
+                    <div class="demo-alerts-panel reveal-up" style="animation-delay:0.1s">
                         <div class="demo-panel-header">
                             <span>⚠️ Alertas Ativos</span>
-                            <span class="alert-count">3 novos</span>
+                            <div class="alert-header-controls">
+                                <select class="alert-filter-select" id="alertFilter">
+                                    <option value="all">Todos</option>
+                                    <option value="warning">Atenção</option>
+                                    <option value="danger">Crítico</option>
+                                    <option value="info">Info</option>
+                                </select>
+                                <span class="alert-count" id="alertCount">3 novos</span>
+                            </div>
                         </div>
-                        <div class="demo-alert-list">
-                            <div class="demo-alert-item alert-warning">
+                        <div class="demo-alert-list" id="alertList">
+                            <div class="demo-alert-item alert-warning" data-type="warning">
                                 <div class="alert-icon">⚠️</div>
                                 <div class="alert-content">
                                     <div class="alert-title">Risco de seca moderada</div>
                                     <div class="alert-desc">NDWI abaixo da média histórica para a região.</div>
                                 </div>
-                                <div class="alert-time">2h</div>
+                                <div class="alert-actions">
+                                    <div class="alert-time">2h</div>
+                                    <button class="alert-resolve-btn" title="Marcar como resolvido">✓</button>
+                                </div>
                             </div>
-                            <div class="demo-alert-item alert-danger">
+                            <div class="demo-alert-item alert-danger" data-type="danger">
                                 <div class="alert-icon">🔥</div>
                                 <div class="alert-content">
                                     <div class="alert-title">Possível degradação vegetal</div>
                                     <div class="alert-desc">Queda de 8% no NDVI nos últimos 15 dias.</div>
                                 </div>
-                                <div class="alert-time">Ontem</div>
+                                <div class="alert-actions">
+                                    <div class="alert-time">Ontem</div>
+                                    <button class="alert-resolve-btn" title="Marcar como resolvido">✓</button>
+                                </div>
                             </div>
-                            <div class="demo-alert-item alert-info">
+                            <div class="demo-alert-item alert-info" data-type="info">
                                 <div class="alert-icon">🛰️</div>
                                 <div class="alert-content">
                                     <div class="alert-title">Nova imagem disponível</div>
                                     <div class="alert-desc">Sentinel-2 capturou área com 0% de cobertura de nuvens.</div>
                                 </div>
-                                <div class="alert-time">1 dia</div>
+                                <div class="alert-actions">
+                                    <div class="alert-time">1 dia</div>
+                                    <button class="alert-resolve-btn" title="Marcar como resolvido">✓</button>
+                                </div>
+                            </div>
+                            <div class="demo-alert-item alert-warning" data-type="warning">
+                                <div class="alert-icon">🌧️</div>
+                                <div class="alert-content">
+                                    <div class="alert-title">Chuva intensa prevista</div>
+                                    <div class="alert-desc">Precipitação acima de 50mm esperada nos próximos 3 dias.</div>
+                                </div>
+                                <div class="alert-actions">
+                                    <div class="alert-time">3 dias</div>
+                                    <button class="alert-resolve-btn" title="Marcar como resolvido">✓</button>
+                                </div>
                             </div>
                         </div>
-                        <button class="demo-laudo-btn">Ver Demonstração do Laudo Territorial →</button>
+                        <button class="demo-laudo-btn" id="btnVerLaudo">Ver Demonstração do Laudo Territorial →</button>
                     </div>
                 </div>
-                
+
+                <!-- Gráfico histórico expandido -->
+                <div class="demo-historico-panel reveal-up">
+                    <div class="demo-panel-header">
+                        <span>📈 Histórico de Índices</span>
+                        <div class="historico-legend">
+                            <span class="hist-leg ndvi-leg">● NDVI</span>
+                            <span class="hist-leg ndwi-leg">● NDWI</span>
+                            <span class="hist-leg nbr-leg">● NBR</span>
+                        </div>
+                    </div>
+                    <div class="historico-chart-wrap">
+                        <canvas id="historicoChart" height="160"></canvas>
+                    </div>
+                </div>
+
+                <!-- Seção de Satélites -->
+                <div class="satelites-section reveal-up">
+                    <div class="satelites-header">
+                        <span>🛰️ Cobertura Satelital Ativa</span>
+                        <span class="satelite-status-badge">● 12 satélites online</span>
+                    </div>
+                    <div class="satelites-grid">
+                        <div class="satelite-card">
+                            <div class="sat-name">Sentinel-2A</div>
+                            <div class="sat-info">Resolução: 10m · Revisita: 5 dias</div>
+                            <div class="sat-bar"><div class="sat-bar-fill" style="width:92%"></div></div>
+                            <div class="sat-coverage">92% cobertura</div>
+                            <div class="sat-next">Próxima passagem: <strong>Hoje, 14:32</strong></div>
+                        </div>
+                        <div class="satelite-card">
+                            <div class="sat-name">Sentinel-2B</div>
+                            <div class="sat-info">Resolução: 10m · Revisita: 5 dias</div>
+                            <div class="sat-bar"><div class="sat-bar-fill" style="width:88%"></div></div>
+                            <div class="sat-coverage">88% cobertura</div>
+                            <div class="sat-next">Próxima passagem: <strong>Amanhã, 09:15</strong></div>
+                        </div>
+                        <div class="satelite-card">
+                            <div class="sat-name">Landsat-8</div>
+                            <div class="sat-info">Resolução: 30m · Revisita: 16 dias</div>
+                            <div class="sat-bar"><div class="sat-bar-fill" style="width:76%"></div></div>
+                            <div class="sat-coverage">76% cobertura</div>
+                            <div class="sat-next">Próxima passagem: <strong>18/05/2026</strong></div>
+                        </div>
+                        <div class="satelite-card">
+                            <div class="sat-name">Planet (SkySat)</div>
+                            <div class="sat-info">Resolução: 3m · Revisita: diária</div>
+                            <div class="sat-bar"><div class="sat-bar-fill sat-bar-premium" style="width:99%"></div></div>
+                            <div class="sat-coverage">99% cobertura</div>
+                            <div class="sat-next">Próxima passagem: <strong class="premium-tag">Plano Pro</strong></div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Call to Action -->
-                <div class="demo-cta">
+                <div class="demo-cta reveal-up">
                     <p>Quer ver como esses dados se transformam em um laudo completo para o seu negócio?</p>
-                    <button class="btn-primary demo-cta-btn">Solicitar Demonstração Personalizada</button>
+                    <div class="cta-buttons">
+                        <button class="btn-primary demo-cta-btn" id="btnSolicitar">Solicitar Demonstração Personalizada</button>
+                        <button class="btn-secondary" id="btnSaberMais">Conhecer planos →</button>
+                    </div>
                 </div>
             </div>
         </section>
-        
+
+        <!-- Seção de Planos -->
+        <section class="planos-section" id="planos">
+            <div class="planos-container">
+                <div class="section-tag reveal-up">Planos</div>
+                <h2 class="section-title reveal-up">Escolha o plano ideal para <span class="highlight-text">sua operação</span></h2>
+                <div class="planos-grid">
+                    <div class="plano-card reveal-up" style="animation-delay:0.05s">
+                        <div class="plano-name">Starter</div>
+                        <div class="plano-price">Gratuito</div>
+                        <div class="plano-desc">Para conhecer a plataforma</div>
+                        <ul class="plano-features">
+                            <li>✓ 1 área monitorada</li>
+                            <li>✓ NDVI e NDWI básicos</li>
+                            <li>✓ Imagens Sentinel-2</li>
+                            <li>✓ 2 laudos/mês</li>
+                            <li class="disabled">✗ Alertas em tempo real</li>
+                            <li class="disabled">✗ Histórico completo</li>
+                        </ul>
+                        <button class="plano-btn plano-btn-secondary" onclick="mostrarToast('📋 Plano Starter ativado com sucesso!', 'success')">Começar grátis</button>
+                    </div>
+                    <div class="plano-card plano-featured reveal-up" style="animation-delay:0.1s">
+                        <div class="plano-badge-destaque">Mais popular</div>
+                        <div class="plano-name">Pro</div>
+                        <div class="plano-price">R$ 297<span>/mês</span></div>
+                        <div class="plano-desc">Para produtores e consultores</div>
+                        <ul class="plano-features">
+                            <li>✓ 10 áreas monitoradas</li>
+                            <li>✓ Todos os índices espectrais</li>
+                            <li>✓ Sentinel + Landsat-8</li>
+                            <li>✓ Laudos ilimitados</li>
+                            <li>✓ Alertas em tempo real</li>
+                            <li>✓ Histórico 5 anos</li>
+                        </ul>
+                        <button class="plano-btn plano-btn-primary" onclick="mostrarToast('🚀 Redirecionando para pagamento...', 'info')">Assinar Pro</button>
+                    </div>
+                    <div class="plano-card reveal-up" style="animation-delay:0.15s">
+                        <div class="plano-name">Enterprise</div>
+                        <div class="plano-price">Sob consulta</div>
+                        <div class="plano-desc">Para grandes operações e gov.</div>
+                        <ul class="plano-features">
+                            <li>✓ Áreas ilimitadas</li>
+                            <li>✓ API completa + webhooks</li>
+                            <li>✓ Planet (3m resolução)</li>
+                            <li>✓ Laudos automatizados</li>
+                            <li>✓ SLA garantido</li>
+                            <li>✓ Suporte dedicado</li>
+                        </ul>
+                        <button class="plano-btn plano-btn-secondary" onclick="abrirModalContato()">Falar com vendas</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer expandido -->
         <footer class="site-footer">
-            <div class="container footer-content">
-                <div class="footer-logo">SPECTO</div>
-                <div class="footer-copy">© 2026 · Inteligência Espacial para o Agro</div>
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <div class="footer-logo">SPECTO</div>
+                    <div class="footer-tagline">Inteligência Espacial para o Agro</div>
+                    <div class="footer-social">
+                        <a href="#" class="social-link" onclick="mostrarToast('Em breve!', 'info'); return false;">𝕏</a>
+                        <a href="#" class="social-link" onclick="mostrarToast('Em breve!', 'info'); return false;">in</a>
+                        <a href="#" class="social-link" onclick="mostrarToast('Em breve!', 'info'); return false;">yt</a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <div class="footer-col-title">Produto</div>
+                        <a href="#features" class="footer-link">Funcionalidades</a>
+                        <a href="#planos" class="footer-link">Planos</a>
+                        <a href="#dashboard-demo" class="footer-link">Demonstração</a>
+                        <a href="#" class="footer-link">Changelog</a>
+                    </div>
+                    <div class="footer-col">
+                        <div class="footer-col-title">Empresa</div>
+                        <a href="#" class="footer-link">Sobre nós</a>
+                        <a href="#" class="footer-link">Blog</a>
+                        <a href="#" class="footer-link">Carreiras</a>
+                        <a href="#" class="footer-link">Contato</a>
+                    </div>
+                    <div class="footer-col">
+                        <div class="footer-col-title">Legal</div>
+                        <a href="#" class="footer-link">Privacidade</a>
+                        <a href="#" class="footer-link">Termos de uso</a>
+                        <a href="#" class="footer-link">Cookies</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">© 2026 Specto · Inteligência Espacial para o Agro</div>
+                <div class="footer-made">Feito com 🌱 para o campo brasileiro</div>
             </div>
         </footer>
     </main>
 
-    <script src="assets/scripts/script.js"></script>
+    <!-- Modal de Laudo -->
+    <div class="modal-overlay" id="modalLaudo">
+        <div class="modal-box">
+            <div class="modal-header">
+                <div>
+                    <div class="modal-title"><span class="highlight-text">SPECTO</span> — Laudo Territorial</div>
+                    <div class="modal-sub">Relatório Técnico de Análise Satelital · Nº LT-2026-004821</div>
+                </div>
+                <button class="modal-close" id="fecharModalLaudo">✕</button>
+            </div>
+            <div class="modal-meta">
+                <div><span class="meta-label">Área</span><span class="meta-value">Sorriso – MT</span></div>
+                <div><span class="meta-label">Bioma</span><span class="meta-value">Cerrado</span></div>
+                <div><span class="meta-label">Satélite</span><span class="meta-value">Sentinel-2B</span></div>
+                <div><span class="meta-label">Data</span><span class="meta-value">14/05/2026</span></div>
+            </div>
+            <div class="modal-indicadores">
+                <div class="indicador">
+                    <div class="indicador-header"><span>NDVI — Saúde da Vegetação</span><strong class="ind-ndvi">0.84</strong></div>
+                    <div class="indicador-bar"><div class="indicador-fill ndvi-fill" style="width:0%" data-target="84"></div></div>
+                    <div class="indicador-status ind-status-excelente">Excelente — vegetação densa e saudável</div>
+                </div>
+                <div class="indicador">
+                    <div class="indicador-header"><span>NDWI — Umidade do Solo</span><strong class="ind-ndwi">0.67</strong></div>
+                    <div class="indicador-bar"><div class="indicador-fill ndwi-fill" style="width:0%" data-target="67"></div></div>
+                    <div class="indicador-status ind-status-estavel">Estável — umidade adequada para a estação</div>
+                </div>
+                <div class="indicador">
+                    <div class="indicador-header"><span>NBR — Risco de Queimada</span><strong class="ind-nbr">0.05</strong></div>
+                    <div class="indicador-bar"><div class="indicador-fill nbr-fill" style="width:0%" data-target="5"></div></div>
+                    <div class="indicador-status ind-status-seguro">Baixo risco — nenhuma queimada detectada</div>
+                </div>
+            </div>
+            <div class="modal-conclusao">
+                <h4>🤖 Conclusão Automática (IA)</h4>
+                <p>A área apresenta excelente cobertura vegetal (NDVI 0.84) com níveis adequados de umidade no solo (NDWI 0.67). Não foram detectados sinais de queimadas recentes (NBR 0.05). As condições gerais da vegetação são favoráveis e estáveis para o período analisado. Recomenda-se monitoramento contínuo com foco na tendência de queda de NDWI verificada nas últimas semanas.</p>
+            </div>
+            <div class="modal-footer">
+                <span>Próxima imagem disponível em <strong>5 dias</strong></span>
+                <div class="modal-footer-actions">
+                    <button class="btn-modal-download" onclick="mostrarToast('📥 Download do PDF iniciado!', 'success')">📥 Baixar PDF</button>
+                    <button class="btn-modal-close" id="btnFecharLaudo">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Contato / Solicitar Demo -->
+    <div class="modal-overlay" id="modalContato">
+        <div class="modal-box modal-contato-box">
+            <div class="modal-header">
+                <div>
+                    <div class="modal-title">Solicitar Demonstração</div>
+                    <div class="modal-sub">Preencha e entraremos em contato em até 24h</div>
+                </div>
+                <button class="modal-close" id="fecharModalContato">✕</button>
+            </div>
+            <div class="contato-form">
+                <div class="form-group">
+                    <label class="form-label">Nome completo *</label>
+                    <input type="text" class="form-input" id="inputNome" placeholder="Ex: João da Silva">
+                    <span class="form-error" id="errNome"></span>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">E-mail *</label>
+                    <input type="email" class="form-input" id="inputEmail" placeholder="seu@email.com.br">
+                    <span class="form-error" id="errEmail"></span>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Telefone / WhatsApp</label>
+                    <input type="tel" class="form-input" id="inputTelefone" placeholder="(11) 99999-9999">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Área de atuação *</label>
+                    <select class="form-input" id="inputArea">
+                        <option value="">Selecione...</option>
+                        <option>Produtor rural</option>
+                        <option>Consultor agrícola</option>
+                        <option>Cooperativa</option>
+                        <option>Órgão público</option>
+                        <option>Pesquisa / Academia</option>
+                        <option>Outro</option>
+                    </select>
+                    <span class="form-error" id="errArea"></span>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Mensagem</label>
+                    <textarea class="form-input form-textarea" id="inputMsg" placeholder="Conte brevemente sobre sua necessidade..."></textarea>
+                </div>
+                <button class="btn-primary form-submit-btn" id="btnEnviarContato">
+                    <span class="btn-text">Enviar solicitação</span>
+                    <span class="btn-loading" style="display:none">⏳ Enviando...</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/Specto/assets/scripts/script.js"></script>
 </body>
 </html>
