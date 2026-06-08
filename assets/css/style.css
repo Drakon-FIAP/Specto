@@ -96,20 +96,16 @@ body.tema3 {
 
 body {
     font-family: "Inter", sans-serif;
-
     background: var(--bg-color);
     color: var(--text-primary);
-
     transition:
         background-color var(--transition-speed),
         color var(--transition-speed);
 
     min-height: 100vh;
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     padding: 2rem;
 }
 
