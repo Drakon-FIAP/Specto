@@ -262,6 +262,138 @@ function animarValoresCards() {
     animarNumero("valNBR",  0.05);
 }
 
+
+
+
+// ============================================
+// SLIDESHOW DE ÍNDICES ESPECTRAIS
+// ============================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    const track = document.getElementById('slideshowTrack');
+    const prevBtn = document.getElementById('prevSlide');
+    const nextBtn = document.getElementById('nextSlide');
+    const dots = document.querySelectorAll('.nav-dot');
+    const progressBar = document.getElementById('progressBar');
+    
+    let currentIndex = 0;
+    const totalSlides = 3;
+    let autoPlayInterval = null;
+    let isTransitioning = false;
+
+    // Atualiza o slideshow
+    function updateSlideshow(index) {
+        if (isTransitioning) return;
+        isTransitioning = true;
+        
+        // Valida índice
+        if (index < 0) index = 0;
+        if (index >= totalSlides) index = totalSlides - 1;
+        currentIndex = index;
+        
+        // Move o track
+        const offset = -currentIndex * 100;
+        track.style.transform = `translateX(${offset}%)`;
+        
+        // Atualiza dots
+        dots.forEach((dot, i) => {
+            if (i === currentIndex) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
+        
+        // Atualiza barra de progresso
+        const progressPercent = ((currentIndex + 1) / totalSlides) * 100;
+        progressBar.style.width = `${progressPercent}%`;
+        
+        // Pequeno delay para evitar múltiplos cliques
+        setTimeout(() => {
+            isTransitioning = false;
+        }, 500);
+    }
+    
+    // Próximo slide
+    function nextSlide() {
+        if (isTransitioning) return;
+        if (currentIndex + 1 < totalSlides) {
+            updateSlideshow(currentIndex + 1);
+        } else {
+            // Volta ao primeiro com efeito suave
+            updateSlideshow(0);
+        }
+        resetAutoPlay();
+    }
+    
+    // Slide anterior
+    function prevSlide() {
+        if (isTransitioning) return;
+        if (currentIndex - 1 >= 0) {
+            updateSlideshow(currentIndex - 1);
+        } else {
+            updateSlideshow(totalSlides - 1);
+        }
+        resetAutoPlay();
+    }
+    
+    // Auto-play
+    function startAutoPlay() {
+        if (autoPlayInterval) clearInterval(autoPlayInterval);
+        autoPlayInterval = setInterval(() => {
+            nextSlide();
+        }, 8000);
+    }
+    
+    function resetAutoPlay() {
+        if (autoPlayInterval) {
+            clearInterval(autoPlayInterval);
+            startAutoPlay();
+        }
+    }
+    
+    function stopAutoPlay() {
+        if (autoPlayInterval) {
+            clearInterval(autoPlayInterval);
+            autoPlayInterval = null;
+        }
+    }
+    
+    // Event listeners
+    if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+    if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+    
+    dots.forEach(dot => {
+        dot.addEventListener('click', function() {
+            const slideIndex = parseInt(this.getAttribute('data-slide'));
+            if (!isNaN(slideIndex) && slideIndex !== currentIndex) {
+                updateSlideshow(slideIndex);
+                resetAutoPlay();
+            }
+        });
+    });
+    
+    // Pausa auto-play no hover
+    const wrapper = document.querySelector('.slideshow-wrapper');
+    if (wrapper) {
+        wrapper.addEventListener('mouseenter', stopAutoPlay);
+        wrapper.addEventListener('mouseleave', startAutoPlay);
+    }
+    
+    // Inicia auto-play
+    startAutoPlay();
+    
+    // Teclas de navegação
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowLeft') {
+            prevSlide();
+            resetAutoPlay();
+        } else if (e.key === 'ArrowRight') {
+            nextSlide();
+            resetAutoPlay();
+        }
+    });
+});
 // ============================================
 // GRÁFICO HISTÓRICO EXPANDIDO
 // ============================================
