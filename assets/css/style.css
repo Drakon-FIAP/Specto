@@ -2711,6 +2711,40 @@ body.tema3 .index-application {
     color: var(--text-secondary);
 }
 
+
+/* Footer — coluna equipe */
+.footer-member {
+    display: flex !important;
+    flex-direction: column;
+    gap: 0.1rem;
+    padding: 0.35rem 0;
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--transition-speed), color var(--transition-speed);
+    text-decoration: none;
+}
+
+.footer-member:hover {
+    border-bottom-color: var(--card-border);
+}
+
+.member-name {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    transition: color var(--transition-speed);
+    line-height: 1.3;
+}
+
+.footer-member:hover .member-name {
+    color: var(--text-highlight);
+}
+
+.member-rm {
+    font-size: 0.65rem;
+    color: var(--text-secondary);
+    opacity: 0.5;
+    font-family: "Space Mono", monospace;
+    letter-spacing: 0.04em;
+}
 /* ============================================
    MODAIS
    ============================================ */
