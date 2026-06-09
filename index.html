@@ -15,13 +15,22 @@
     <div class="scroll-progress" id="scrollProgress"></div>
 
     <!-- Seletor de Temas -->
-    <div class="theme-switcher">
-        <input type="radio" id="tema1" name="tema" checked>
-        <label for="tema1">Space</label>
-        <input type="radio" id="tema2" name="tema">
-        <label for="tema2">Light</label>
-        <input type="radio" id="tema3" name="tema">
-        <label for="tema3">Purple</label>
+     <div class="header">
+        <nav class="menu">
+            <a href="#problems" class="menu-link active">Problema</a>
+            <a href="#objetivos" class="menu-link">Objetivos</a>
+            <a href="#tecnologia" class="menu-link">Tecnologias</a>
+            <a href="#dashboard-demo" class="menu-link">Demonstração</a>
+            <a href="#planos" class="menu-link">Planos</a>
+        </nav>
+        <div class="theme-switcher">
+            <input type="radio" id="tema1" name="tema" checked>
+            <label for="tema1">Space</label>
+            <input type="radio" id="tema2" name="tema">
+            <label for="tema2">Light</label>
+            <input type="radio" id="tema3" name="tema">
+            <label for="tema3">Purple</label>
+        </div>
     </div>
 
     <!-- Sistema de Toasts -->
@@ -99,7 +108,7 @@
         </section>
         <section class="objetivos-section" id="objetivos">
             <div class="objetivos-container">
-                <span class="section-tag">OBJETIVOS</span>
+                <span class="problemas-tag">OBJETIVOS</span>
                 <h2 class="objetivos-title">
                     Conectando o que o satélite vê ao que realmente acontece no solo.
                 </h2>
@@ -171,73 +180,332 @@
                 </div>
             </div>
         </section>
+        <section class="tech-section" id="tecnologia">
+            <div class="tech-container">
+                <div class="demo-header">
+                    <span class="problemas-tag">TECNOLOGIAS</span>
+                    <h2 class="demo-title reveal-up">
+                        Transformando
+                        <span class="highlight-text">dados espaciais</span>
+                        em decisões reais
+                    </h2>
+                    <p class="tech-subtitle">
+                        Do satélite ao campo. Uma infraestrutura completa que coleta,
+                        interpreta e valida informações territoriais em tempo quase real.
+                    </p>
+                </div>
 
-        <!-- Seção de Features -->
-        <section class="features-section" id="features">
-            <div class="features-container">
-                <div class="section-tag reveal-up">CAPACIDADES</div>
-                <h2 class="section-title reveal-up">Tudo que você precisa para <span class="highlight-text">monitorar</span> sua área</h2>
-                <div class="features-grid">
-                    <div class="feature-card reveal-up" style="animation-delay:0.05s">
-                        <div class="feature-icon">🛰️</div>
-                        <h3 class="feature-title">Imagens Satelitais</h3>
-                        <p class="feature-desc">Acesso a imagens Sentinel-2, Landsat-8 e Planet com resolução de até 3 metros. Cobertura diária para áreas prioritárias.</p>
-                        <div class="feature-tags">
-                            <span class="feature-tag">Sentinel-2</span>
-                            <span class="feature-tag">Landsat-8</span>
-                            <span class="feature-tag">10m res.</span>
+                <div class="tech-layout">
+                    <div class="tech-grid">
+                        <!-- Card 1: Sentinel-2 & Copernicus -->
+                        <article class="tech-card">
+                            <div class="card-icon">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="12" cy="12" r="2" fill="currentColor" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>
+                            </div>
+                            <h3>Sentinel-2 & Copernicus</h3>
+                            <p>
+                                Imagens multiespectrais capturadas a 786 km de altitude
+                                pelo satélite Sentinel-2B. O sensor MSI registra 13
+                                bandas espectrais e revisita qualquer região do Brasil
+                                a cada 5 dias.
+                            </p>
+                            <div class="feature-tags">
+                                <span>786 km</span>
+                                <span>13 Bandas</span>
+                                <span>10m/pixel</span>
+                                <span>ESA</span>
+                            </div>
+                        </article>
+
+                        <!-- Card 2: Motor de Análise Espectral -->
+                        <article class="tech-card">
+                            <div class="card-icon">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M21 12C21 13.2 20.5 14.2 19.7 15.1C18.9 15.9 17.8 16.5 16.5 16.8C15.2 17.1 13.8 17.1 12.3 16.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    <path d="M3 12C3 6.5 7 2 12 2C17 2 21 6.5 21 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    <path d="M12 22C7 22 3 17.5 3 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="currentColor" stroke-width="1.5"/>
+                                    <path d="M12 12L14 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <h3>Motor de Análise Espectral</h3>
+                            <p>
+                                Processamento automático de NDVI, NDWI e NBR utilizando
+                                Python, NumPy e Rasterio para identificar vegetação,
+                                disponibilidade hídrica e áreas queimadas.
+                            </p>
+                            <div class="feature-tags">
+                                <span>NDVI</span>
+                                <span>NDWI</span>
+                                <span>NBR</span>
+                                <span>Rasterio</span>
+                            </div>
+                        </article>
+
+                        <!-- Card 3: Pipeline Inteligente -->
+                        <article class="tech-card">
+                            <div class="card-icon">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M4 7H20M4 12H20M4 17H12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    <path d="M17 15L20 18L17 21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M20 18H15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    <circle cx="7" cy="7" r="1.5" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+                                    <circle cx="7" cy="12" r="1.5" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+                                    <circle cx="7" cy="17" r="1.5" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+                                </svg>
+                            </div>
+                            <h3>Pipeline Inteligente</h3>
+                            <p>
+                                Geocodificação automática, consulta à API Copernicus,
+                                cruzamento com dados do IBGE e geração de laudos
+                                territoriais completos em PDF.
+                            </p>
+                            <div class="feature-tags">
+                                <span>Python</span>
+                                <span>OpenEO</span>
+                                <span>IBGE</span>
+                                <span>PDF</span>
+                            </div>
+                        </article>
+
+                        <!-- Card 4: Proxi - Destacado -->
+                        <article class="tech-card tech-card-featured">
+                            <div class="tech-badge">DIFERENCIAL</div>
+                            <div class="card-icon">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="6" y="4" width="12" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                                    <path d="M10 8H14M10 12H14M10 16H12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    <circle cx="17" cy="18" r="1.5" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+                                    <circle cx="7" cy="18" r="1.5" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+                                    <path d="M8 2L6 4M16 2L18 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <h3>Proxi • Validação em Campo</h3>
+                            <p>
+                                Sensor físico desenvolvido para comparar medições reais
+                                de solo, luminosidade e temperatura com os dados
+                                observados pelos satélites.
+                            </p>
+                            <div class="feature-tags">
+                                <span>Arduino</span>
+                                <span>TMP36</span>
+                                <span>LDR</span>
+                                <span>Solo</span>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Showcase Proxi com imagem e animações -->
+                    <div class="proxi-showcase">
+                        <div class="proxi-orbit-animation"></div>
+                        <div class="proxi-glow"></div>
+                        <div class="proxi-device">
+                            <img src="assets/img/proxi.png" alt="Dispositivo Proxi para validação de dados orbitais">
+                        </div>
+                        <div class="proxi-caption">
+                            <span class="proxi-label">HARDWARE EXCLUSIVO</span>
+                            <h3>O elo entre o satélite e a realidade.</h3>
+                            <p>
+                                Enquanto o Sentinel observa o território do espaço,
+                                o Proxi coleta medições físicas diretamente no local,
+                                validando os dados orbitais e aumentando a confiabilidade
+                                dos laudos gerados pelo Specto.
+                            </p>
                         </div>
                     </div>
-                    <div class="feature-card reveal-up" style="animation-delay:0.1s">
-                        <div class="feature-icon">🌿</div>
-                        <h3 class="feature-title">Índices Espectrais</h3>
-                        <p class="feature-desc">Cálculo automático de NDVI, NDWI, NBR, EVI e mais de 15 índices espectrais com histórico completo e tendências.</p>
-                        <div class="feature-tags">
-                            <span class="feature-tag">NDVI</span>
-                            <span class="feature-tag">NDWI</span>
-                            <span class="feature-tag">NBR</span>
-                            <span class="feature-tag">EVI</span>
+                </div>
+            </div>
+        </section>
+        <!-- SEÇÃO DE SLIDESHOW - ÍNDICES ESPECTRAIS -->
+        <section class="indices-slideshow" id="indices">
+            <div class="slideshow-container">
+                <div class="slideshow-header">
+                    <span class="problemas-tag">ÍNDICES ESPECTRAIS</span>
+                    <h2 class="section-title">
+                        O que os satélites <span class="highlight-text">realmente enxergam</span>
+                    </h2>
+                    <p class="slideshow-subtitle">
+                        Cada índice revela uma camada invisível do território. Entenda como o Specto traduz dados brutos em diagnósticos precisos.
+                    </p>
+                </div>
+
+                <div class="slideshow-wrapper">
+                    <!-- Slider principal -->
+                    <div class="slideshow-track" id="slideshowTrack">
+                        <!-- Slide 1 - NDVI (imagem esquerda, texto direita) -->
+                        <div class="slide-item" data-index="0">
+                            <div class="slide-layout layout-left-image">
+                                <div class="slide-image-area">
+                                    <div class="image-frame">
+                                        <img src="assets/img/NDVI.jpg" alt="NDVI - Saúde da vegetação" class="slide-image" id="imgNdvi">
+                                    </div>
+                                    <div class="image-credit">Sentinel-2B | Banda 8 e 4 | Resolução 10m</div>
+                                </div>
+                                <div class="slide-content-area">
+                                    <div class="index-badge">01</div>
+                                    <div class="index-title">
+                                        <span class="index-name">NDVI</span>
+                                        <span class="index-full">Normalized Difference Vegetation Index</span>
+                                    </div>
+                                    <h3 class="index-question">A vegetação está saudável?</h3>
+                                    <div class="index-formula">
+                                        <span class="formula-label">Fórmula</span>
+                                        <code class="formula-code">NDVI = (NIR - Red) / (NIR + Red)</code>
+                                    </div>
+                                    <p class="index-description">
+                                        O NDVI mede a densidade e saúde da cobertura vegetal comparando 
+                                        a reflectância do infravermelho próximo (NIR) com o vermelho (Red). 
+                                        Vegetação saudável reflete muito NIR e absorve vermelho, gerando valores 
+                                        próximos de +1. Áreas com pouca ou nenhuma vegetação tendem a zero ou valores negativos.
+                                    </p>
+                                    <div class="index-scale">
+                                        <div class="scale-bar">
+                                            <span class="scale-label scale-bad">-1</span>
+                                            <span class="scale-marker scale-marker-poor"></span>
+                                            <span class="scale-marker scale-marker-moderate"></span>
+                                            <span class="scale-marker scale-marker-good"></span>
+                                            <span class="scale-marker scale-marker-excellent"></span>
+                                            <span class="scale-label scale-good">+1</span>
+                                        </div>
+                                        <div class="scale-legend">
+                                            <span class="legend-bad">Solo exposto / Água</span>
+                                            <span class="legend-moderate">Vegetação rala</span>
+                                            <span class="legend-good">Vegetação densa</span>
+                                            <span class="legend-excellent">Muito saudável</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 2 - NDWI (texto esquerda, imagem direita) -->
+                        <div class="slide-item" data-index="1">
+                            <div class="slide-layout layout-right-image">
+                                <div class="slide-content-area">
+                                    <div class="index-badge">02</div>
+                                    <div class="index-title">
+                                        <span class="index-name">NDWI</span>
+                                        <span class="index-full">Normalized Difference Water Index</span>
+                                    </div>
+                                    <h3 class="index-question">O solo está úmido ou seco?</h3>
+                                    <div class="index-formula">
+                                        <span class="formula-label">Fórmula</span>
+                                        <code class="formula-code">NDWI = (Green - NIR) / (Green + NIR)</code>
+                                    </div>
+                                    <p class="index-description">
+                                        O NDWI utiliza as bandas do verde e do infravermelho próximo para identificar 
+                                        corpos d'água e monitorar a umidade do solo. Valores positivos indicam presença 
+                                        de água superficial, enquanto valores negativos sugerem solo seco ou estresse hídrico. 
+                                        Essencial para monitorar secas e planejar irrigação.
+                                    </p>
+                                    <div class="index-scale">
+                                        <div class="scale-bar scale-bar-water">
+                                            <span class="scale-label scale-bad">-1</span>
+                                            <span class="scale-marker scale-marker-dry"></span>
+                                            <span class="scale-marker scale-marker-moist"></span>
+                                            <span class="scale-marker scale-marker-wet"></span>
+                                            <span class="scale-marker scale-marker-water"></span>
+                                            <span class="scale-label scale-good">+1</span>
+                                        </div>
+                                        <div class="scale-legend">
+                                            <span class="legend-dry">Solo seco</span>
+                                            <span class="legend-moist">Umidade moderada</span>
+                                            <span class="legend-wet">Solo úmido</span>
+                                            <span class="legend-water">Corpo d'água</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slide-image-area">
+                                    <div class="image-frame">
+                                        <img src="assets/img/NDWI.jpg" alt="NDWI - Umidade do solo" class="slide-image" id="imgNdwi">
+                                    </div>
+                                    <div class="image-credit">Sentinel-2B | Banda 3 e 8 | Resolução 10m</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 3 - NBR (imagem esquerda, texto direita) -->
+                        <div class="slide-item" data-index="2">
+                            <div class="slide-layout layout-left-image">
+                                <div class="slide-image-area">
+                                    <div class="image-frame">
+                                        <img src="assets/img/NBR.jpg" alt="NBR - Risco de queimadas" class="slide-image" id="imgNbr">
+                                    </div>
+                                    <div class="image-credit">Sentinel-2B | Banda 8 e 12 | Resolução 20m</div>
+                                </div>
+                                <div class="slide-content-area">
+                                    <div class="index-badge">03</div>
+                                    <div class="index-title">
+                                        <span class="index-name">NBR</span>
+                                        <span class="index-full">Normalized Burn Ratio</span>
+                                    </div>
+                                    <h3 class="index-question">Houve queimada ou degradação?</h3>
+                                    <div class="index-formula">
+                                        <span class="formula-label">Fórmula</span>
+                                        <code class="formula-code">NBR = (NIR - SWIR) / (NIR + SWIR)</code>
+                                    </div>
+                                    <p class="index-description">
+                                        O NBR combina o infravermelho próximo (NIR) com o infravermelho de ondas curtas (SWIR) 
+                                        para detectar áreas queimadas. O SWIR é fortemente absorvido pelo fogo, criando um 
+                                        contraste nítido entre vegetação saudável e áreas queimadas. A diferença entre imagens 
+                                        pré e pós-fogo (dNBR) quantifica a severidade do incêndio.
+                                    </p>
+                                    <div class="index-scale">
+                                        <div class="scale-bar scale-bar-burn">
+                                            <span class="scale-label scale-bad">-1</span>
+                                            <span class="scale-marker scale-marker-burned"></span>
+                                            <span class="scale-marker scale-marker-recovering"></span>
+                                            <span class="scale-marker scale-marker-healthy"></span>
+                                            <span class="scale-marker scale-marker-dense"></span>
+                                            <span class="scale-label scale-good">+1</span>
+                                        </div>
+                                        <div class="scale-legend">
+                                            <span class="legend-burned">Queimada severa</span>
+                                            <span class="legend-recovering">Recuperação</span>
+                                            <span class="legend-healthy">Vegetação saudável</span>
+                                            <span class="legend-dense">Vegetação densa</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="feature-card reveal-up" style="animation-delay:0.15s">
-                        <div class="feature-icon">⚡</div>
-                        <h3 class="feature-title">Alertas em Tempo Real</h3>
-                        <p class="feature-desc">Sistema inteligente de alertas para queimadas, degradação vegetal, inundações e anomalias climáticas com notificações instantâneas.</p>
-                        <div class="feature-tags">
-                            <span class="feature-tag">Queimadas</span>
-                            <span class="feature-tag">Seca</span>
-                            <span class="feature-tag">Inundação</span>
+
+                    <!-- Navegação do slideshow -->
+                    <div class="slideshow-nav">
+                        <button class="nav-arrow nav-prev" id="prevSlide">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="15 18 9 12 15 6"></polyline>
+                            </svg>
+                        </button>
+                        
+                        <div class="nav-dots" id="navDots">
+                            <button class="nav-dot active" data-slide="0">
+                                <span class="dot-label">NDVI</span>
+                            </button>
+                            <button class="nav-dot" data-slide="1">
+                                <span class="dot-label">NDWI</span>
+                            </button>
+                            <button class="nav-dot" data-slide="2">
+                                <span class="dot-label">NBR</span>
+                            </button>
                         </div>
+
+                        <button class="nav-arrow nav-next" id="nextSlide">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </button>
                     </div>
-                    <div class="feature-card reveal-up" style="animation-delay:0.2s">
-                        <div class="feature-icon">📋</div>
-                        <h3 class="feature-title">Laudos Técnicos</h3>
-                        <p class="feature-desc">Relatórios PDF completos gerados automaticamente com análise técnica, mapas temáticos e recomendações baseadas em IA.</p>
-                        <div class="feature-tags">
-                            <span class="feature-tag">PDF</span>
-                            <span class="feature-tag">IA</span>
-                            <span class="feature-tag">Automático</span>
-                        </div>
-                    </div>
-                    <div class="feature-card reveal-up" style="animation-delay:0.25s">
-                        <div class="feature-icon">🗺️</div>
-                        <h3 class="feature-title">Mapeamento de Áreas</h3>
-                        <p class="feature-desc">Delimite talhões, áreas de preservação e zonas de manejo com precisão centimétrica usando nosso editor vetorial.</p>
-                        <div class="feature-tags">
-                            <span class="feature-tag">GeoJSON</span>
-                            <span class="feature-tag">Shapefile</span>
-                            <span class="feature-tag">KML</span>
-                        </div>
-                    </div>
-                    <div class="feature-card reveal-up" style="animation-delay:0.3s">
-                        <div class="feature-icon">📊</div>
-                        <h3 class="feature-title">Análise Histórica</h3>
-                        <p class="feature-desc">Série temporal de até 10 anos com comparações sazonais, detecção de tendências e análise de correlação climática.</p>
-                        <div class="feature-tags">
-                            <span class="feature-tag">10 anos</span>
-                            <span class="feature-tag">Sazonalidade</span>
-                            <span class="feature-tag">Tendências</span>
-                        </div>
+
+                    <!-- Progresso -->
+                    <div class="slideshow-progress">
+                        <div class="progress-bar" id="progressBar"></div>
                     </div>
                 </div>
             </div>
@@ -247,7 +515,7 @@
         <section class="demo-section" id="dashboard-demo">
             <div class="container demo-container">
                 <div class="demo-header">
-                    <span class="section-tag">DEMONSTRAÇÃO DASHBOARD</span>
+                    <span class="problemas-tag">DEMONSTRAÇÃO DASHBOARD</span>
                     <h2 class="demo-title reveal-up">Um olhar por dentro da <span class="highlight-text">plataforma</span></h2>
                     <p class="demo-subtitle reveal-up">Monitore índices espectrais, clima e alertas em tempo real. Interface projetada para decisões rápidas e precisas.</p>
                 </div>
@@ -497,7 +765,7 @@
         <!-- Seção de Planos -->
         <section class="planos-section" id="planos">
             <div class="planos-container">
-                <div class="section-tag reveal-up">Planos</div>
+                <div class="problemas-tag">PLANOS</div>
                 <h2 class="section-title reveal-up">Escolha o plano ideal para <span class="highlight-text">sua operação</span></h2>
                 <div class="planos-grid">
                     <div class="plano-card reveal-up" style="animation-delay:0.05s">
