@@ -1,4 +1,37 @@
 // ============================================
+// MENU
+// ============================================
+const sections = document.querySelectorAll("section");
+const links = document.querySelectorAll(".menu-link");
+
+window.addEventListener("scroll", () => {
+
+    let current = "";
+
+    sections.forEach(section => {
+
+        const sectionTop = section.offsetTop - 150;
+
+        if(window.scrollY >= sectionTop){
+            current = section.id;
+        }
+
+    });
+
+    links.forEach(link => {
+
+        link.classList.remove("active");
+
+        if(link.getAttribute("href") === `#${current}`){
+            link.classList.add("active");
+        }
+
+    });
+
+});
+
+
+// ============================================
 // SISTEMA DE TEMAS
 // ============================================
 
@@ -27,6 +60,10 @@ tema3El.addEventListener("click", () => aplicarTema("tema3"));
         if (radio) radio.checked = true;
     }
 })();
+
+
+
+
 
 // ============================================
 // SCROLL PROGRESS BAR
