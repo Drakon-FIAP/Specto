@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Specto - Inteligência Espacial para o Agro</title>
+</head>
+<body class="tema1">
+
+    <!-- Barra de progresso de scroll -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Seletor de Temas -->
+     <div class="header">
+        <nav class="menu">
+            <a href="#problems" class="menu-link active">Problema</a>
+            <a href="#objetivos" class="menu-link">Objetivos</a>
+            <a href="#tecnologia" class="menu-link">Tecnologias</a>
+            <a href="#beneficios" class="menu-link">Benefícios</a>
+            <a href="#dashboard-demo" class="menu-link">Demonstração</a>
+            <a href="#planos" class="menu-link">Planos</a>
+        </nav>
+        <div class="theme-switcher">
+            <input type="radio" id="tema1" name="tema" checked>
+            <label for="tema1">Space</label>
+            <input type="radio" id="tema2" name="tema">
+            <label for="tema2">Light</label>
+            <input type="radio" id="tema3" name="tema">
+            <label for="tema3">Purple</label>
+        </div>
+    </div>
+
+    <!-- Sistema de Toasts -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <main>
+        <!-- Hero Section -->
+        <div class="container hero">
+            <div class="title-i reveal-fade">SPECTO</div>
+            <h1 class="subtitle-i reveal-fade" style="animation-delay:0.1s">O dado que estava no espaço.</h1>
+            <h1 class="subtitle2-i reveal-fade" style="animation-delay:0.2s">O laudo que chegou até você.</h1>
+            <p class="description reveal-fade" style="animation-delay:0.3s">
+                Transformamos imagens de satélite em informações acessíveis para produtores,
+                gestores públicos e organizações que precisam tomar decisões com confiança.
+            </p>
+            <div class="buttons reveal-fade" style="animation-delay:0.4s">
+                <button class="btn-primary" id="btnGerarLaudo">
+                    <span class="btn-text">Gerar meu laudo</span>
+                    <span class="btn-loading" style="display:none">⏳ Carregando...</span>
+                </button>
+                <button class="btn-secondary" id="btnVerDemo">Ver demonstração</button>
+            </div>
+
+            <!-- Stats hero -->
+            <div class="hero-stats reveal-fade" style="animation-delay:0.5s">
+                <div class="hero-stat">
+                    <span class="hero-stat-value" data-target="2400">0</span><span class="hero-stat-suffix">+</span>
+                    <span class="hero-stat-label">Laudos gerados</span>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat">
+                    <span class="hero-stat-value" data-target="180">0</span><span class="hero-stat-suffix">M ha</span>
+                    <span class="hero-stat-label">Monitorados</span>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat">
+                    <span class="hero-stat-value" data-target="12">0</span><span class="hero-stat-suffix"> sat</span>
+                    <span class="hero-stat-label">Satélites ativos</span>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat">
+                    <span class="hero-stat-value" data-target="98">0</span><span class="hero-stat-suffix">%</span>
+                    <span class="hero-stat-label">Precisão</span>
+                </div>
+            </div>
+        </div>
+        <section class="problemas-section" id="problems">
+            <div class="problemas-orbit"></div>
+
+            <div class="problemas-container">
+                <div class="problemas-left">
+                    <span class="problemas-tag">PROBLEMA</span>
+
+                    <h2 class="problemas-title">
+                        O monitoramento orbital gera milhares de dados.
+                        Mas quase nenhuma informação útil.
+                    </h2>
+                </div>
+
+                <div class="problemas-right">
+                    <p>
+                        Produtores, seguradoras e gestores públicos têm acesso
+                        a imagens de satélite diariamente, mas transformar esses
+                        dados em decisões práticas ainda exige especialistas,
+                        softwares complexos e muito tempo de processamento.
+                    </p>
+
+                    <p>
+                        O resultado é um cenário onde informações críticas
+                        chegam tarde demais, aumentando riscos operacionais,
+                        perdas financeiras e ineficiência na gestão territorial.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <section class="objetivos-section" id="objetivos">
+            <div class="objetivos-container">
+                <span class="problemas-tag">OBJETIVOS</span>
+                <h2 class="objetivos-title">
+                    Conectando o que o satélite vê ao que realmente acontece no solo.
+                </h2>
+                <p class="objetivos-description">
+                    Enquanto o Sentinel-2 monitora grandes áreas da superfície terrestre,
+                    o Proxi realiza a coleta local de temperatura, luminosidade e umidade
+                    do solo. Juntos, eles criam uma camada de dupla validação capaz de
+                    transformar imagens orbitais em evidências confiáveis para tomadas
+                    de decisão.
+                </p>
+                <div class="specto-flow">
+                    <div class="flow-card">
+                        <div class="flow-icon">
+                            🛰️
+                        </div>
+                        <h3>Sentinel-2</h3>
+                        <p>
+                            Captura dados orbitais e índices espectrais como NDVI,
+                            NDWI e NBR em escala territorial.
+                        </p>
+                    </div>
+                    <div class="flow-arrow">
+                        →
+                    </div>
+                    <div class="flow-card flow-card-proxi">
+                        <div class="proxi-orbit"></div>
+                        <div class="proxi-device">
+                            <img src="assets/img/proxi.png" 
+                            alt="Dispositivo Proxi utilizado para validar dados orbitais através da coleta local de temperatura, luminosidade e umidade do solo.">
+                        </div>
+
+                        <h3>Proxi</h3>
+                        <p>
+                            Realiza a validação local dos dados coletados pelo satélite
+                            utilizando sensores instalados em campo.
+                        </p>
+                    </div>
+                    <div class="flow-arrow">
+                        →
+                    </div>
+                    <div class="flow-card">
+                        <div class="flow-icon">
+                            📄
+                        </div>
+                        <h3>Laudo Specto</h3>
+                        <p>
+                            Converte dados complexos em informações acessíveis para
+                            agricultores, gestores públicos e pesquisadores.
+                        </p>
+                    </div>
+                </div>
+                <div class="objetivos-list">
+                    <div class="objetivo-item">
+                        <span>01</span>
+                        <p>Democratizar o acesso a dados orbitais.</p>
+                    </div>
+                    <div class="objetivo-item">
+                        <span>02</span>
+                        <p>Auxiliar decisões ambientais e agrícolas.</p>
+                    </div>
+                    <div class="objetivo-item">
+                        <span>03</span>
+                        <p>Validar informações espaciais com sensores locais.</p>
+                    </div>
+                    <div class="objetivo-item">
+                        <span>04</span>
+                        <p>Gerar laudos territoriais acessíveis em português.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="tech-section" id="tecnologia">
+            <div class="tech-container">
+                <div class="demo-header">
+                    <span class="problemas-tag">TECNOLOGIAS</span>
+                    <h2 class="demo-title reveal-up">
+                        Transformando
+                        <span class="highlight-text">dados espaciais</span>
+                        em decisões reais
+                    </h2>
+                    <p class="tech-subtitle">
+                        Do satélite ao campo. Uma infraestrutura completa que coleta,
+                        interpreta e valida informações territoriais em tempo quase real.
+                    </p>
+                </div>
+
+                <div class="tech-layout">
+                    <div class="tech-grid">
+                        <!-- Card 1: Sentinel-2 & Copernicus -->
+                        <article class="tech-card">
+                            <div class="card-icon">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="12" cy="12" r="2" fill="currentColor" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>
+                            </div>
+                            <h3>Sentinel-2 & Copernicus</h3>
+                            <p>
+                                Imagens multiespectrais capturadas a 786 km de altitude
+                                pelo satélite Sentinel-2B. O sensor MSI registra 13
+                                bandas espectrais e revisita qualquer região do Brasil
+                                a cada 5 dias.
+                            </p>
+                            <div class="feature-tags">
+                                <span>786 km</span>
+                                <span>13 Bandas</span>
+                                <span>10m/pixel</span>
+                                <span>ESA</span>
+                            </div>
+                        </article>
+
+                        <!-- Card 2: Motor de Análise Espectral -->
+                        <article class="tech-card">
+                            <div class="card-icon">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M21 12C21 13.2 20.5 14.2 19.7 15.1C18.9 15.9 17.8 16.5 16.5 16.8C15.2 17.1 13.8 17.1 12.3 16.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    <path d="M3 12C3 6.5 7 2 12 2C17 2 21 6.5 21 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    <path d="M12 22C7 22 3 17.5 3 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="currentColor" stroke-width="1.5"/>
+                                    <path d="M12 12L14 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <h3>Motor de Análise Espectral</h3>
+                            <p>
+                                Processamento automático de NDVI, NDWI e NBR utilizando
+                                Python, NumPy e Rasterio para identificar vegetação,
+                                disponibilidade hídrica e áreas queimadas.
+                            </p>
+                            <div class="feature-tags">
+                                <span>NDVI</span>
+                                <span>NDWI</span>
+                                <span>NBR</span>
+                                <span>Rasterio</span>
+                            </div>
+                        </article>
+
+                        <!-- Card 3: Pipeline Inteligente -->
+                        <article class="tech-card">
+                            <div class="card-icon">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M4 7H20M4 12H20M4 17H12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    <path d="M17 15L20 18L17 21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M20 18H15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    <circle cx="7" cy="7" r="1.5" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+                                    <circle cx="7" cy="12" r="1.5" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+                                    <circle cx="7" cy="17" r="1.5" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+                                </svg>
+                            </div>
+                            <h3>Pipeline Inteligente</h3>
+                            <p>
+                                Geocodificação automática, consulta à API Copernicus,
+                                cruzamento com dados do IBGE e geração de laudos
+                                territoriais completos em PDF.
+                            </p>
+                            <div class="feature-tags">
+                                <span>Python</span>
+                                <span>OpenEO</span>
+                                <span>IBGE</span>
+                                <span>PDF</span>
+                            </div>
+                        </article>
+
+                        <!-- Card 4: Proxi - Destacado -->
+                        <article class="tech-card tech-card-featured">
+                            <div class="tech-badge">DIFERENCIAL</div>
+                            <div class="card-icon">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="6" y="4" width="12" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                                    <path d="M10 8H14M10 12H14M10 16H12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    <circle cx="17" cy="18" r="1.5" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+                                    <circle cx="7" cy="18" r="1.5" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+                                    <path d="M8 2L6 4M16 2L18 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <h3>Proxi • Validação em Campo</h3>
+                            <p>
+                                Sensor físico desenvolvido para comparar medições reais
+                                de solo, luminosidade e temperatura com os dados
+                                observados pelos satélites.
+                            </p>
+                            <div class="feature-tags">
+                                <span>Arduino</span>
+                                <span>TMP36</span>
+                                <span>LDR</span>
+                                <span>Solo</span>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Showcase Proxi com imagem e animações -->
+                    <div class="proxi-showcase">
+                        <div class="proxi-orbit-animation"></div>
+                        <div class="proxi-glow"></div>
+                        <div class="proxi-device">
+                            <img src="assets/img/proxi.png" alt="Dispositivo Proxi para validação de dados orbitais">
+                        </div>
+                        <div class="proxi-caption">
+                            <span class="proxi-label">HARDWARE EXCLUSIVO</span>
+                            <h3>O elo entre o satélite e a realidade.</h3>
+                            <p>
+                                Enquanto o Sentinel observa o território do espaço,
+                                o Proxi coleta medições físicas diretamente no local,
+                                validando os dados orbitais e aumentando a confiabilidade
+                                dos laudos gerados pelo Specto.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- SEÇÃO DE SLIDESHOW - ÍNDICES ESPECTRAIS -->
+        <section class="indices-slideshow" id="indices">
+            <div class="slideshow-container">
+                <div class="slideshow-header">
+                    <span class="problemas-tag">ÍNDICES ESPECTRAIS</span>
+                    <h2 class="section-title">
+                        O que os satélites <span class="highlight-text">realmente enxergam</span>
+                    </h2>
+                    <p class="slideshow-subtitle">
+                        Cada índice revela uma camada invisível do território. Entenda como o Specto traduz dados brutos em diagnósticos precisos.
+                    </p>
+                </div>
+
+                <div class="slideshow-wrapper">
+                    <!-- Slider principal -->
+                    <div class="slideshow-track" id="slideshowTrack">
+                        <!-- Slide 1 - NDVI (imagem esquerda, texto direita) -->
+                        <div class="slide-item" data-index="0">
+                            <div class="slide-layout layout-left-image">
+                                <div class="slide-image-area">
+                                    <div class="image-frame">
+                                        <img src="assets/img/NDVI.jpg" alt="NDVI - Saúde da vegetação" class="slide-image" id="imgNdvi">
+                                    </div>
+                                    <div class="image-credit">Sentinel-2B | Banda 8 e 4 | Resolução 10m</div>
+                                </div>
+                                <div class="slide-content-area">
+                                    <div class="index-badge">01</div>
+                                    <div class="index-title">
+                                        <span class="index-name">NDVI</span>
+                                        <span class="index-full">Normalized Difference Vegetation Index</span>
+                                    </div>
+                                    <h3 class="index-question">A vegetação está saudável?</h3>
+                                    <div class="index-formula">
+                                        <span class="formula-label">Fórmula</span>
+                                        <code class="formula-code">NDVI = (NIR - Red) / (NIR + Red)</code>
+                                    </div>
+                                    <p class="index-description">
+                                        O NDVI mede a densidade e saúde da cobertura vegetal comparando 
+                                        a reflectância do infravermelho próximo (NIR) com o vermelho (Red). 
+                                        Vegetação saudável reflete muito NIR e absorve vermelho, gerando valores 
+                                        próximos de +1. Áreas com pouca ou nenhuma vegetação tendem a zero ou valores negativos.
+                                    </p>
+                                    <div class="index-scale">
+                                        <div class="scale-bar">
+                                            <span class="scale-label scale-bad">-1</span>
+                                            <span class="scale-marker scale-marker-poor"></span>
+                                            <span class="scale-marker scale-marker-moderate"></span>
+                                            <span class="scale-marker scale-marker-good"></span>
+                                            <span class="scale-marker scale-marker-excellent"></span>
+                                            <span class="scale-label scale-good">+1</span>
+                                        </div>
+                                        <div class="scale-legend">
+                                            <span class="legend-bad">Solo exposto / Água</span>
+                                            <span class="legend-moderate">Vegetação rala</span>
+                                            <span class="legend-good">Vegetação densa</span>
+                                            <span class="legend-excellent">Muito saudável</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 2 - NDWI (texto esquerda, imagem direita) -->
+                        <div class="slide-item" data-index="1">
+                            <div class="slide-layout layout-right-image">
+                                <div class="slide-content-area">
+                                    <div class="index-badge">02</div>
+                                    <div class="index-title">
+                                        <span class="index-name">NDWI</span>
+                                        <span class="index-full">Normalized Difference Water Index</span>
+                                    </div>
+                                    <h3 class="index-question">O solo está úmido ou seco?</h3>
+                                    <div class="index-formula">
+                                        <span class="formula-label">Fórmula</span>
+                                        <code class="formula-code">NDWI = (Green - NIR) / (Green + NIR)</code>
+                                    </div>
+                                    <p class="index-description">
+                                        O NDWI utiliza as bandas do verde e do infravermelho próximo para identificar 
+                                        corpos d'água e monitorar a umidade do solo. Valores positivos indicam presença 
+                                        de água superficial, enquanto valores negativos sugerem solo seco ou estresse hídrico. 
+                                        Essencial para monitorar secas e planejar irrigação.
+                                    </p>
+                                    <div class="index-scale">
+                                        <div class="scale-bar scale-bar-water">
+                                            <span class="scale-label scale-bad">-1</span>
+                                            <span class="scale-marker scale-marker-dry"></span>
+                                            <span class="scale-marker scale-marker-moist"></span>
+                                            <span class="scale-marker scale-marker-wet"></span>
+                                            <span class="scale-marker scale-marker-water"></span>
+                                            <span class="scale-label scale-good">+1</span>
+                                        </div>
+                                        <div class="scale-legend">
+                                            <span class="legend-dry">Solo seco</span>
+                                            <span class="legend-moist">Umidade moderada</span>
+                                            <span class="legend-wet">Solo úmido</span>
+                                            <span class="legend-water">Corpo d'água</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slide-image-area">
+                                    <div class="image-frame">
+                                        <img src="assets/img/NDWI.jpg" alt="NDWI - Umidade do solo" class="slide-image" id="imgNdwi">
+                                    </div>
+                                    <div class="image-credit">Sentinel-2B | Banda 3 e 8 | Resolução 10m</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 3 - NBR (imagem esquerda, texto direita) -->
+                        <div class="slide-item" data-index="2">
+                            <div class="slide-layout layout-left-image">
+                                <div class="slide-image-area">
+                                    <div class="image-frame">
+                                        <img src="assets/img/NBR.jpg" alt="NBR - Risco de queimadas" class="slide-image" id="imgNbr">
+                                    </div>
+                                    <div class="image-credit">Sentinel-2B | Banda 8 e 12 | Resolução 20m</div>
+                                </div>
+                                <div class="slide-content-area">
+                                    <div class="index-badge">03</div>
+                                    <div class="index-title">
+                                        <span class="index-name">NBR</span>
+                                        <span class="index-full">Normalized Burn Ratio</span>
+                                    </div>
+                                    <h3 class="index-question">Houve queimada ou degradação?</h3>
+                                    <div class="index-formula">
+                                        <span class="formula-label">Fórmula</span>
+                                        <code class="formula-code">NBR = (NIR - SWIR) / (NIR + SWIR)</code>
+                                    </div>
+                                    <p class="index-description">
+                                        O NBR combina o infravermelho próximo (NIR) com o infravermelho de ondas curtas (SWIR) 
+                                        para detectar áreas queimadas. O SWIR é fortemente absorvido pelo fogo, criando um 
+                                        contraste nítido entre vegetação saudável e áreas queimadas. A diferença entre imagens 
+                                        pré e pós-fogo (dNBR) quantifica a severidade do incêndio.
+                                    </p>
+                                    <div class="index-scale">
+                                        <div class="scale-bar scale-bar-burn">
+                                            <span class="scale-label scale-bad">-1</span>
+                                            <span class="scale-marker scale-marker-burned"></span>
+                                            <span class="scale-marker scale-marker-recovering"></span>
+                                            <span class="scale-marker scale-marker-healthy"></span>
+                                            <span class="scale-marker scale-marker-dense"></span>
+                                            <span class="scale-label scale-good">+1</span>
+                                        </div>
+                                        <div class="scale-legend">
+                                            <span class="legend-burned">Queimada severa</span>
+                                            <span class="legend-recovering">Recuperação</span>
+                                            <span class="legend-healthy">Vegetação saudável</span>
+                                            <span class="legend-dense">Vegetação densa</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Navegação do slideshow -->
+                    <div class="slideshow-nav">
+                        <button class="nav-arrow nav-prev" id="prevSlide">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="15 18 9 12 15 6"></polyline>
+                            </svg>
+                        </button>
+                        
+                        <div class="nav-dots" id="navDots">
+                            <button class="nav-dot active" data-slide="0">
+                                <span class="dot-label">NDVI</span>
+                            </button>
+                            <button class="nav-dot" data-slide="1">
+                                <span class="dot-label">NDWI</span>
+                            </button>
+                            <button class="nav-dot" data-slide="2">
+                                <span class="dot-label">NBR</span>
+                            </button>
+                        </div>
+
+                        <button class="nav-arrow nav-next" id="nextSlide">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Progresso -->
+                    <div class="slideshow-progress">
+                        <div class="progress-bar" id="progressBar"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Seção de Benefícios por Público-Alvo -->
+        <section class="beneficios-section" id="beneficios">
+            <div class="beneficios-container">
+                <div class="demo-header">
+                    <span class="problemas-tag">BENEFÍCIOS</span>
+                    <h2 class="demo-title reveal-up">
+                        Quem usa o Specto
+                        <span class="highlight-text">transforma dado em ação</span>
+                    </h2>
+                    <p class="tech-subtitle">
+                        Do agricultor familiar ao gestor público — cada perfil encontra
+                        uma camada de valor diferente no mesmo laudo territorial.
+                    </p>
+                </div>
+
+                <div class="beneficios-table reveal-fade">
+                    <div class="bt-header">
+                        <span class="bt-col-publico">Público-alvo</span>
+                        <span class="bt-col-dor">Problema hoje</span>
+                        <span class="bt-col-valor">O que o Specto entrega</span>
+                    </div>
+
+                    <div class="bt-row">
+                        <div class="bt-col-publico">
+                            <span class="bt-icon"><svg class="bt-svg-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 22V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M12 12C12 12 8 10 6 6C4 2 8 2 10 4C11 5 12 6 12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12 12C12 12 16 10 18 6C20 2 16 2 14 4C13 5 12 6 12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M5 22H19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg></span>
+                            <div>
+                                <strong>Agricultores familiares</strong>
+                                <span class="bt-tag">Campo</span>
+                            </div>
+                        </div>
+                        <div class="bt-col-dor" data-label="Problema hoje">Precisam de técnico agrônomo para interpretar saúde da lavoura</div>
+                        <div class="bt-col-valor" data-label="O que o Specto entrega">Laudo de estresse hídrico e vegetação em português, sem intermediários, antes da perda visual da cultura</div>
+                    </div>
+
+                    <div class="bt-row">
+                        <div class="bt-col-publico">
+                            <span class="bt-icon"><svg class="bt-svg-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3 21H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M3 10H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M5 10V21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M19 10V21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M9 10V21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M15 10V21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M12 3L21 10H3L12 3Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg></span>
+                            <div>
+                                <strong>Gestores municipais</strong>
+                                <span class="bt-tag">Gestão pública</span>
+                            </div>
+                        </div>
+                        <div class="bt-col-dor" data-label="Problema hoje">Faltam evidências técnicas independentes para políticas ambientais</div>
+                        <div class="bt-col-valor" data-label="O que o Specto entrega">Histórico temporal de cobertura vegetal para fundamentar licenciamento e recuperação de áreas verdes</div>
+                    </div>
+
+                    <div class="bt-row">
+                        <div class="bt-col-publico">
+                            <span class="bt-icon"><svg class="bt-svg-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21 3C21 3 14 3 9 8C4 13 3 21 3 21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M3 21C3 21 8 14 13 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M21 3C21 3 21 10 16 15C14 17 11 18 8 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg></span>
+                            <div>
+                                <strong>ONGs e sociedade civil</strong>
+                                <span class="bt-tag">Advocacy</span>
+                            </div>
+                        </div>
+                        <div class="bt-col-dor" data-label="Problema hoje">Dependem de declarações governamentais para provar degradação</div>
+                        <div class="bt-col-valor" data-label="O que o Specto entrega">Laudo técnico gerado automaticamente com dados orbitais — pronto para o Ministério Público ou imprensa</div>
+                    </div>
+
+                    <div class="bt-row">
+                        <div class="bt-col-publico">
+                            <span class="bt-icon"><svg class="bt-svg-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                                <path d="M7 8H17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M7 12H17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M7 16H13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M3 8H1M3 12H1M3 16H1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg></span>
+                            <div>
+                                <strong>Jornalistas investigativos</strong>
+                                <span class="bt-tag">Dados</span>
+                            </div>
+                        </div>
+                        <div class="bt-col-dor" data-label="Problema hoje">Ferramentas satelitais exigem formação técnica em geoprocessamento</div>
+                        <div class="bt-col-valor" data-label="O que o Specto entrega">Verificação independente de queimadas e desmatamento com fonte rastreável e metodologia auditável</div>
+                    </div>
+
+                    <div class="bt-row">
+                        <div class="bt-col-publico">
+                            <span class="bt-icon"><svg class="bt-svg-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 18L10 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M8 8L16 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M9 7L15 3L17 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M13 11L15 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M4 22H20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M8 18C8 18 6 20 6 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M10 14C10 14 12 16 14 16C16 16 18 14 18 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg></span>
+                            <div>
+                                <strong>Extensionistas rurais</strong>
+                                <span class="bt-tag">Embrapa · Emater</span>
+                            </div>
+                        </div>
+                        <div class="bt-col-dor" data-label="Problema hoje">Monitorar dezenas de propriedades simultâneas exige deslocamento físico</div>
+                        <div class="bt-col-valor" data-label="O que o Specto entrega">Triagem remota de todas as propriedades em uma tela — deslocamento apenas onde o laudo apontar alerta</div>
+                    </div>
+
+                    <div class="bt-row">
+                        <div class="bt-col-publico">
+                            <span class="bt-icon"><svg class="bt-svg-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 3L22 8L12 13L2 8L12 3Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M6 10.5V16C6 16 8 19 12 19C16 19 18 16 18 16V10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M22 8V13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg></span>
+                            <div>
+                                <strong>Pesquisadores e academia</strong>
+                                <span class="bt-tag">Ciência</span>
+                            </div>
+                        </div>
+                        <div class="bt-col-dor" data-label="Problema hoje">Integração manual entre Sentinel-2, INPE e IBGE consome semanas</div>
+                        <div class="bt-col-valor" data-label="O que o Specto entrega">Séries históricas de 12 meses prontas para análise, com dados IBGE e INPE já cruzados e exportáveis</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Demonstração do Dashboard -->
+        <section class="demo-section" id="dashboard-demo">
+            <div class="container demo-container">
+                <div class="demo-header">
+                    <span class="problemas-tag">DEMONSTRAÇÃO DASHBOARD</span>
+                    <h2 class="demo-title reveal-up">Um olhar por dentro da <span class="highlight-text">plataforma</span></h2>
+                    <p class="demo-subtitle reveal-up">Monitore índices espectrais, clima e alertas em tempo real. Interface projetada para decisões rápidas e precisas.</p>
+                </div>
+
+                <!-- Filtro de período -->
+                <div class="demo-filter-bar reveal-fade">
+                    <span class="filter-label">Período:</span>
+                    <div class="filter-pills">
+                        <button class="filter-pill active" data-period="7d">7 dias</button>
+                        <button class="filter-pill" data-period="30d">30 dias</button>
+                        <button class="filter-pill" data-period="90d">3 meses</button>
+                        <button class="filter-pill" data-period="1y">1 ano</button>
+                    </div>
+                    <span class="filter-update">
+                        <span class="live-dot"></span> Atualizado há 3 min
+                    </span>
+                </div>
+
+                <!-- Cards de Métricas -->
+                <div class="demo-cards-row">
+                    <div class="demo-card reveal-up" style="animation-delay:0.05s">
+                        <div class="demo-card-header">
+                            <div>
+                                <div class="demo-card-label"><span class="demo-dot ndvi-dot"></span>NDVI</div>
+                                <div class="demo-card-sub">Saúde da vegetação</div>
+                            </div>
+                            <div class="demo-icon-placeholder">🌿</div>
+                        </div>
+                        <div class="demo-card-value ndvi-value" id="valNDVI">0.00</div>
+                        <div class="demo-card-status status-excelente">▲ +0.12 vs. mês anterior</div>
+                        <div class="demo-mini-chart">
+                            <canvas id="demoMiniNDVI" width="200" height="40"></canvas>
+                        </div>
+                        <div class="demo-card-tooltip">Normalised Difference Vegetation Index · Escala: -1 a +1</div>
+                    </div>
+                    <div class="demo-card reveal-up" style="animation-delay:0.1s">
+                        <div class="demo-card-header">
+                            <div>
+                                <div class="demo-card-label"><span class="demo-dot ndwi-dot"></span>NDWI</div>
+                                <div class="demo-card-sub">Umidade do solo</div>
+                            </div>
+                            <div class="demo-icon-placeholder">💧</div>
+                        </div>
+                        <div class="demo-card-value ndwi-value" id="valNDWI">0.00</div>
+                        <div class="demo-card-status status-estavel">→ Estável · sem variação</div>
+                        <div class="demo-mini-chart">
+                            <canvas id="demoMiniNDWI" width="200" height="40"></canvas>
+                        </div>
+                        <div class="demo-card-tooltip">Normalised Difference Water Index · Escala: -1 a +1</div>
+                    </div>
+                    <div class="demo-card reveal-up" style="animation-delay:0.15s">
+                        <div class="demo-card-header">
+                            <div>
+                                <div class="demo-card-label"><span class="demo-dot nbr-dot"></span>NBR</div>
+                                <div class="demo-card-sub">Risco de queimadas</div>
+                            </div>
+                            <div class="demo-icon-placeholder">🔥</div>
+                        </div>
+                        <div class="demo-card-value nbr-value" id="valNBR">0.00</div>
+                        <div class="demo-card-status status-seguro">✓ Baixo risco · zona segura</div>
+                        <div class="demo-mini-chart">
+                            <canvas id="demoMiniNBR" width="200" height="40"></canvas>
+                        </div>
+                        <div class="demo-card-tooltip">Normalised Burn Ratio · Quanto menor, melhor</div>
+                    </div>
+                    <div class="demo-card reveal-up clima-card" style="animation-delay:0.2s">
+                        <div class="demo-card-header">
+                            <div>
+                                <div class="demo-card-label"><span class="demo-dot clima-dot"></span>Clima Atual</div>
+                                <div class="demo-card-sub">Sorriso – MT</div>
+                            </div>
+                            <div class="demo-icon-placeholder">⛅</div>
+                        </div>
+                        <div class="demo-clima-details">
+                            <div class="clima-row"><span>Temperatura</span><strong>29°C</strong></div>
+                            <div class="clima-row"><span>Umidade</span><strong>72%</strong></div>
+                            <div class="clima-row"><span>Chuva</span><strong>12mm</strong></div>
+                            <div class="clima-row"><span>Vento</span><strong>14 km/h</strong></div>
+                            <div class="clima-row"><span>UV</span><strong>Alto (8)</strong></div>
+                        </div>
+                        <div class="demo-card-tooltip">Fonte: INMET · Estação automática mais próxima</div>
+                    </div>
+                </div>
+
+                <!-- Grid Mapa + Alertas -->
+                <div class="demo-grid">
+                    <div class="demo-map-panel reveal-up">
+                        <div class="demo-panel-header">
+                            <span>🗺️ Mapa de Índices</span>
+                            <div class="map-layer-controls">
+                                <button class="map-layer-btn active" data-layer="ndvi">NDVI</button>
+                                <button class="map-layer-btn" data-layer="ndwi">NDWI</button>
+                                <button class="map-layer-btn" data-layer="nbr">NBR</button>
+                                <button class="map-layer-btn" data-layer="rgb">RGB</button>
+                            </div>
+                        </div>
+                        <div class="demo-map-placeholder" id="demoMap">
+                            <div class="map-grain"></div>
+                            <div class="map-legend" id="mapLegend">🌍 Cerrado · Última passagem: 14/05/2026</div>
+                            <div class="simulated-polygon" id="mapBlob1"></div>
+                            <div class="simulated-polygon2" id="mapBlob2"></div>
+                            <!-- Escala de cores do mapa -->
+                            <div class="map-colorscale" id="mapColorscale">
+                                <div class="colorscale-bar" id="colorscaleBar"></div>
+                                <div class="colorscale-labels">
+                                    <span id="csMin">0.0</span>
+                                    <span id="csMax">1.0</span>
+                                </div>
+                            </div>
+                            <!-- Coordenadas no hover -->
+                            <div class="map-coords" id="mapCoords">-12.543°S  55.781°W</div>
+                        </div>
+                        <div class="demo-map-footer">
+                            <span class="map-tag">🛰️ Sentinel-2B</span>
+                            <span class="map-tag">📅 14/05/2026</span>
+                            <span class="map-tag">📍 10m/pixel</span>
+                            <span class="map-tag">☁️ 0% nuvens</span>
+                        </div>
+                    </div>
+                    <div class="demo-alerts-panel reveal-up" style="animation-delay:0.1s">
+                        <div class="demo-panel-header">
+                            <span>⚠️ Alertas Ativos</span>
+                            <div class="alert-header-controls">
+                                <select class="alert-filter-select" id="alertFilter">
+                                    <option value="all">Todos</option>
+                                    <option value="warning">Atenção</option>
+                                    <option value="danger">Crítico</option>
+                                    <option value="info">Info</option>
+                                </select>
+                                <span class="alert-count" id="alertCount">3 novos</span>
+                            </div>
+                        </div>
+                        <div class="demo-alert-list" id="alertList">
+                            <div class="demo-alert-item alert-warning" data-type="warning">
+                                <div class="alert-icon">⚠️</div>
+                                <div class="alert-content">
+                                    <div class="alert-title">Risco de seca moderada</div>
+                                    <div class="alert-desc">NDWI abaixo da média histórica para a região.</div>
+                                </div>
+                                <div class="alert-actions">
+                                    <div class="alert-time">2h</div>
+                                    <button class="alert-resolve-btn" title="Marcar como resolvido">✓</button>
+                                </div>
+                            </div>
+                            <div class="demo-alert-item alert-danger" data-type="danger">
+                                <div class="alert-icon">🔥</div>
+                                <div class="alert-content">
+                                    <div class="alert-title">Possível degradação vegetal</div>
+                                    <div class="alert-desc">Queda de 8% no NDVI nos últimos 15 dias.</div>
+                                </div>
+                                <div class="alert-actions">
+                                    <div class="alert-time">Ontem</div>
+                                    <button class="alert-resolve-btn" title="Marcar como resolvido">✓</button>
+                                </div>
+                            </div>
+                            <div class="demo-alert-item alert-info" data-type="info">
+                                <div class="alert-icon">🛰️</div>
+                                <div class="alert-content">
+                                    <div class="alert-title">Nova imagem disponível</div>
+                                    <div class="alert-desc">Sentinel-2 capturou área com 0% de cobertura de nuvens.</div>
+                                </div>
+                                <div class="alert-actions">
+                                    <div class="alert-time">1 dia</div>
+                                    <button class="alert-resolve-btn" title="Marcar como resolvido">✓</button>
+                                </div>
+                            </div>
+                            <div class="demo-alert-item alert-warning" data-type="warning">
+                                <div class="alert-icon">🌧️</div>
+                                <div class="alert-content">
+                                    <div class="alert-title">Chuva intensa prevista</div>
+                                    <div class="alert-desc">Precipitação acima de 50mm esperada nos próximos 3 dias.</div>
+                                </div>
+                                <div class="alert-actions">
+                                    <div class="alert-time">3 dias</div>
+                                    <button class="alert-resolve-btn" title="Marcar como resolvido">✓</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="demo-laudo-btn" id="btnVerLaudo">Ver Demonstração do Laudo Territorial →</button>
+                    </div>
+                </div>
+
+                <!-- Gráfico histórico expandido -->
+                <div class="demo-historico-panel reveal-up">
+                    <div class="demo-panel-header">
+                        <span>📈 Histórico de Índices</span>
+                        <div class="historico-legend">
+                            <span class="hist-leg ndvi-leg">● NDVI</span>
+                            <span class="hist-leg ndwi-leg">● NDWI</span>
+                            <span class="hist-leg nbr-leg">● NBR</span>
+                        </div>
+                    </div>
+                    <div class="historico-chart-wrap">
+                        <canvas id="historicoChart" height="160"></canvas>
+                    </div>
+                </div>
+
+                <!-- Seção de Satélites -->
+                <div class="satelites-section reveal-up">
+                    <div class="satelites-header">
+                        <span>🛰️ Cobertura Satelital Ativa</span>
+                        <span class="satelite-status-badge">● 12 satélites online</span>
+                    </div>
+                    <div class="satelites-grid">
+                        <div class="satelite-card">
+                            <div class="sat-name">Sentinel-2A</div>
+                            <div class="sat-info">Resolução: 10m · Revisita: 5 dias</div>
+                            <div class="sat-bar"><div class="sat-bar-fill" style="width:92%"></div></div>
+                            <div class="sat-coverage">92% cobertura</div>
+                            <div class="sat-next">Próxima passagem: <strong>Hoje, 14:32</strong></div>
+                        </div>
+                        <div class="satelite-card">
+                            <div class="sat-name">Sentinel-2B</div>
+                            <div class="sat-info">Resolução: 10m · Revisita: 5 dias</div>
+                            <div class="sat-bar"><div class="sat-bar-fill" style="width:88%"></div></div>
+                            <div class="sat-coverage">88% cobertura</div>
+                            <div class="sat-next">Próxima passagem: <strong>Amanhã, 09:15</strong></div>
+                        </div>
+                        <div class="satelite-card">
+                            <div class="sat-name">Landsat-8</div>
+                            <div class="sat-info">Resolução: 30m · Revisita: 16 dias</div>
+                            <div class="sat-bar"><div class="sat-bar-fill" style="width:76%"></div></div>
+                            <div class="sat-coverage">76% cobertura</div>
+                            <div class="sat-next">Próxima passagem: <strong>18/05/2026</strong></div>
+                        </div>
+                        <div class="satelite-card">
+                            <div class="sat-name">Planet (SkySat)</div>
+                            <div class="sat-info">Resolução: 3m · Revisita: diária</div>
+                            <div class="sat-bar"><div class="sat-bar-fill sat-bar-premium" style="width:99%"></div></div>
+                            <div class="sat-coverage">99% cobertura</div>
+                            <div class="sat-next">Próxima passagem: <strong class="premium-tag">Plano Pro</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Call to Action -->
+                <div class="demo-cta reveal-up">
+                    <p>Quer ver como esses dados se transformam em um laudo completo para o seu negócio?</p>
+                    <div class="cta-buttons">
+                        <button class="btn-primary demo-cta-btn" id="btnSolicitar">Solicitar Demonstração Personalizada</button>
+                        <button class="btn-secondary" id="btnSaberMais">Conhecer planos →</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Planos -->
+        <section class="planos-section" id="planos">
+            <div class="planos-container">
+                <div class="problemas-tag">PLANOS</div>
+                <h2 class="section-title reveal-up">Escolha o plano ideal para <span class="highlight-text">sua operação</span></h2>
+                <div class="planos-grid">
+                    <div class="plano-card reveal-up" style="animation-delay:0.05s">
+                        <div class="plano-card-header">
+                            <div class="plano-name">Starter</div>
+                            <div class="plano-price">Gratuito</div>
+                            <div class="plano-desc">Para conhecer a plataforma</div>
+                        </div>
+                        <div class="plano-card-body">
+                        <ul class="plano-features">
+                            <li><svg class="feat-check" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> 1 área monitorada</li>
+                            <li><svg class="feat-check" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> NDVI e NDWI básicos</li>
+                            <li><svg class="feat-check" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Imagens Sentinel-2</li>
+                            <li><svg class="feat-check" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> 2 laudos/mês</li>
+                            <li class="disabled"><svg class="feat-cross" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> Alertas em tempo real</li>
+                            <li class="disabled"><svg class="feat-cross" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> Histórico completo</li>
+                        </ul>
+                        <button class="plano-btn plano-btn-secondary" onclick="mostrarToast('📋 Plano Starter ativado com sucesso!', 'success')">Começar grátis</button>
+                        </div>
+                    </div>
+                    <div class="plano-card plano-featured reveal-up" style="animation-delay:0.1s">
+                        <div class="plano-card-header">
+                            <div class="plano-badge-destaque">Mais popular</div>
+                            <div class="plano-name">Pro</div>
+                            <div class="plano-price">R$ 297<span>/mês</span></div>
+                            <div class="plano-desc">Para produtores e consultores</div>
+                        </div>
+                        <div class="plano-card-body">
+                        <ul class="plano-features">
+                            <li><svg class="feat-check" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> 10 áreas monitoradas</li>
+                            <li><svg class="feat-check" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Todos os índices espectrais</li>
+                            <li><svg class="feat-check" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Sentinel + Landsat-8</li>
+                            <li><svg class="feat-check" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Laudos ilimitados</li>
+                            <li><svg class="feat-check" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Alertas em tempo real</li>
+                            <li><svg class="feat-check" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Histórico 5 anos</li>
+                        </ul>
+                        <button class="plano-btn plano-btn-primary" onclick="mostrarToast('🚀 Redirecionando para pagamento...', 'info')">Assinar Pro</button>
+                        </div>
+                    </div>
+                    <div class="plano-card reveal-up" style="animation-delay:0.15s">
+                        <div class="plano-card-header">
+                            <div class="plano-name">Enterprise</div>
+                            <div class="plano-price">Sob consulta</div>
+                            <div class="plano-desc">Para grandes operações e gov.</div>
+                        </div>
+                        <div class="plano-card-body">
+                        <ul class="plano-features">
+                            <li><svg class="feat-check" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Áreas ilimitadas</li>
+                            <li><svg class="feat-check" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> API completa + webhooks</li>
+                            <li><svg class="feat-check" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Planet (3m resolução)</li>
+                            <li><svg class="feat-check" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Laudos automatizados</li>
+                            <li><svg class="feat-check" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> SLA garantido</li>
+                            <li><svg class="feat-check" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Suporte dedicado</li>
+                        </ul>
+                        <button class="plano-btn plano-btn-secondary" onclick="abrirModalContato()">Falar com vendas</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer expandido -->
+        <footer class="site-footer">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <div class="footer-logo">SPECTO</div>
+                    <div class="footer-tagline">Inteligência Espacial para o Agro</div>
+                    <div class="footer-social">
+                        <a href="#" class="social-link" onclick="mostrarToast('Em breve!', 'info'); return false;">𝕏</a>
+                        <a href="#" class="social-link" onclick="mostrarToast('Em breve!', 'info'); return false;">in</a>
+                        <a href="#" class="social-link" onclick="mostrarToast('Em breve!', 'info'); return false;">yt</a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <div class="footer-col-title">Produto</div>
+                        <a href="#features" class="footer-link">Funcionalidades</a>
+                        <a href="#planos" class="footer-link">Planos</a>
+                        <a href="#dashboard-demo" class="footer-link">Demonstração</a>
+                        <a href="#" class="footer-link">Changelog</a>
+                    </div>
+                    <div class="footer-col">
+                        <div class="footer-col-title">Empresa</div>
+                        <a href="#" class="footer-link">Sobre nós</a>
+                        <a href="#" class="footer-link">Blog</a>
+                        <a href="#" class="footer-link">Carreiras</a>
+                        <a href="#" class="footer-link">Contato</a>
+                    </div>
+                    <div class="footer-col">
+                        <div class="footer-col-title">Legal</div>
+                        <a href="#" class="footer-link">Privacidade</a>
+                        <a href="#" class="footer-link">Termos de uso</a>
+                        <a href="#" class="footer-link">Cookies</a>
+                    </div>
+                    <div class="footer-col footer-col-equipe">
+                        <div class="footer-col-title">Equipe</div>
+                        <a href="https://www.linkedin.com/in/antonio-do-nascimento-ferreira-de-sousa-28441b399/" target="_blank" rel="noopener" class="footer-link footer-member">
+                            <span class="member-name">Antonio N. F. de Sousa</span>
+                            <span class="member-rm">RM 573706</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/" target="_blank" rel="noopener" class="footer-link footer-member">
+                            <span class="member-name">Guilherme P. R. da Silva</span>
+                            <span class="member-rm">RM 573360</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/leal9gustavo/" target="_blank" rel="noopener" class="footer-link footer-member">
+                            <span class="member-name">Gustavo Leal</span>
+                            <span class="member-rm">RM 569361</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/matheus-mendes-041134299/" target="_blank" rel="noopener" class="footer-link footer-member">
+                            <span class="member-name">Matheus M. D. da Silva</span>
+                            <span class="member-rm">RM 569559</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/matheus-sato-a7a88a387/" target="_blank" rel="noopener" class="footer-link footer-member">
+                            <span class="member-name">Matheus Sato O. do Prado</span>
+                            <span class="member-rm">RM 569392</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">© 2026 Specto · Inteligência Espacial para o Agro</div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Modal de Laudo -->
+    <div class="modal-overlay" id="modalLaudo">
+        <div class="modal-box">
+            <div class="modal-header">
+                <div>
+                    <div class="modal-title"><span class="highlight-text">SPECTO</span> — Laudo Territorial</div>
+                    <div class="modal-sub">Relatório Técnico de Análise Satelital · Nº LT-2026-004821</div>
+                </div>
+                <button class="modal-close" id="fecharModalLaudo">✕</button>
+            </div>
+            <div class="modal-meta">
+                <div><span class="meta-label">Área</span><span class="meta-value">Sorriso – MT</span></div>
+                <div><span class="meta-label">Bioma</span><span class="meta-value">Cerrado</span></div>
+                <div><span class="meta-label">Satélite</span><span class="meta-value">Sentinel-2B</span></div>
+                <div><span class="meta-label">Data</span><span class="meta-value">14/05/2026</span></div>
+            </div>
+            <div class="modal-indicadores">
+                <div class="indicador">
+                    <div class="indicador-header"><span>NDVI — Saúde da Vegetação</span><strong class="ind-ndvi">0.84</strong></div>
+                    <div class="indicador-bar"><div class="indicador-fill ndvi-fill" style="width:0%" data-target="84"></div></div>
+                    <div class="indicador-status ind-status-excelente">Excelente — vegetação densa e saudável</div>
+                </div>
+                <div class="indicador">
+                    <div class="indicador-header"><span>NDWI — Umidade do Solo</span><strong class="ind-ndwi">0.67</strong></div>
+                    <div class="indicador-bar"><div class="indicador-fill ndwi-fill" style="width:0%" data-target="67"></div></div>
+                    <div class="indicador-status ind-status-estavel">Estável — umidade adequada para a estação</div>
+                </div>
+                <div class="indicador">
+                    <div class="indicador-header"><span>NBR — Risco de Queimada</span><strong class="ind-nbr">0.05</strong></div>
+                    <div class="indicador-bar"><div class="indicador-fill nbr-fill" style="width:0%" data-target="5"></div></div>
+                    <div class="indicador-status ind-status-seguro">Baixo risco — nenhuma queimada detectada</div>
+                </div>
+            </div>
+            <div class="modal-conclusao">
+                <h4>🤖 Conclusão Automática (IA)</h4>
+                <p>A área apresenta excelente cobertura vegetal (NDVI 0.84) com níveis adequados de umidade no solo (NDWI 0.67). Não foram detectados sinais de queimadas recentes (NBR 0.05). As condições gerais da vegetação são favoráveis e estáveis para o período analisado. Recomenda-se monitoramento contínuo com foco na tendência de queda de NDWI verificada nas últimas semanas.</p>
+            </div>
+            <div class="modal-footer">
+                <span>Próxima imagem disponível em <strong>5 dias</strong></span>
+                <div class="modal-footer-actions">
+                    <button class="btn-modal-download" onclick="mostrarToast('📥 Download do PDF iniciado!', 'success')">📥 Baixar PDF</button>
+                    <button class="btn-modal-close" id="btnFecharLaudo">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Contato / Solicitar Demo -->
+    <div class="modal-overlay" id="modalContato">
+        <div class="modal-box modal-contato-box">
+            <div class="modal-header">
+                <div>
+                    <div class="modal-title">Solicitar Demonstração</div>
+                    <div class="modal-sub">Preencha e entraremos em contato em até 24h</div>
+                </div>
+                <button class="modal-close" id="fecharModalContato">✕</button>
+            </div>
+            <div class="contato-form">
+                <div class="form-group">
+                    <label class="form-label">Nome completo *</label>
+                    <input type="text" class="form-input" id="inputNome" placeholder="Ex: João da Silva">
+                    <span class="form-error" id="errNome"></span>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">E-mail *</label>
+                    <input type="email" class="form-input" id="inputEmail" placeholder="seu@email.com.br">
+                    <span class="form-error" id="errEmail"></span>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Telefone / WhatsApp</label>
+                    <input type="tel" class="form-input" id="inputTelefone" placeholder="(11) 99999-9999">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Área de atuação *</label>
+                    <select class="form-input" id="inputArea">
+                        <option value="">Selecione...</option>
+                        <option>Produtor rural</option>
+                        <option>Consultor agrícola</option>
+                        <option>Cooperativa</option>
+                        <option>Órgão público</option>
+                        <option>Pesquisa / Academia</option>
+                        <option>Outro</option>
+                    </select>
+                    <span class="form-error" id="errArea"></span>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Mensagem</label>
+                    <textarea class="form-input form-textarea" id="inputMsg" placeholder="Conte brevemente sobre sua necessidade..."></textarea>
+                </div>
+                <button class="btn-primary form-submit-btn" id="btnEnviarContato">
+                    <span class="btn-text">Enviar solicitação</span>
+                    <span class="btn-loading" style="display:none">⏳ Enviando...</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/scripts/script.js"></script>
+</body>
+</html>
