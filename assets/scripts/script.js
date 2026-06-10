@@ -231,10 +231,7 @@ function desenharMiniGrafico(canvasId, dados, cor) {
 }
 
 function redesenharMiniGraficos() {
-    const cores = getCorDoTema();
-    desenharMiniGrafico("demoMiniNDVI", ndviData, cores.ndvi);
-    desenharMiniGrafico("demoMiniNDWI", ndwiData, cores.ndwi);
-    desenharMiniGrafico("demoMiniNBR",  nbrData,  cores.nbr);
+    atualizarMiniGraficosPeriodo(periodoAtivo);
 }
 
 // ============================================
@@ -400,9 +397,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
 const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
 
-function desenharHistorico() {
+// Referência atual dos dados usados no tooltip
+let _historicoAtualDados = null;
+let _historicoAtualLabels = null;
+
+function desenharHistorico(period) {
+    period = period || periodoAtivo || "7d";
     const canvas = document.getElementById("historicoChart");
     if (!canvas) return;
+
+    const cfg = getDadosPeriodo(period);
+    _historicoAtualDados = cfg;
+    _historicoAtualLabels = cfg.labels;
 
     const parent = canvas.parentElement;
     const W = parent ? parent.offsetWidth : 800;
@@ -415,9 +421,9 @@ function desenharHistorico() {
 
     const cores = getCorDoTema();
     const series = [
-        { data: ndviData, cor: cores.ndvi },
-        { data: ndwiData, cor: cores.ndwi },
-        { data: nbrData,  cor: cores.nbr },
+        { data: cfg.ndvi, cor: cores.ndvi },
+        { data: cfg.ndwi, cor: cores.ndwi },
+        { data: cfg.nbr,  cor: cores.nbr },
     ];
 
     const padL = 40, padR = 16, padT = 16, padB = 28;
@@ -434,7 +440,6 @@ function desenharHistorico() {
         ctx.strokeStyle = "rgba(255,255,255,0.06)";
         ctx.lineWidth = 1;
         ctx.stroke();
-        // Label Y
         const val = (1 - i / gridLines).toFixed(1);
         ctx.fillStyle = "rgba(167,176,190,0.6)";
         ctx.font = "10px Space Mono, monospace";
@@ -442,9 +447,14 @@ function desenharHistorico() {
         ctx.fillText(val, padL - 6, y + 4);
     }
 
-    // Labels X
-    meses.forEach((m, i) => {
-        const x = padL + (i / (meses.length - 1)) * plotW;
+    // Labels X — mostrar apenas os não-vazios, com densidade adaptativa
+    const labels = cfg.labels;
+    const n = labels.length;
+    const maxLabels = Math.floor(plotW / 35); // evitar sobreposição
+    labels.forEach((m, i) => {
+        if (!m) return; // pula labels vazios (período 30d)
+        if (n > maxLabels && i % Math.ceil(n / maxLabels) !== 0 && i !== n - 1) return;
+        const x = padL + (n > 1 ? (i / (n - 1)) * plotW : plotW / 2);
         ctx.fillStyle = "rgba(167,176,190,0.6)";
         ctx.font = "9px Space Mono, monospace";
         ctx.textAlign = "center";
@@ -453,11 +463,11 @@ function desenharHistorico() {
 
     // Linhas das séries
     series.forEach(({ data, cor }) => {
+        if (!data || data.length < 2) return;
         const min = 0, max = 1, range = max - min;
-        const xs = data.map((_, i) => padL + (i / (data.length - 1)) * plotW);
+        const xs = data.map((_, i) => padL + (data.length > 1 ? (i / (data.length - 1)) * plotW : plotW / 2));
         const ys = data.map(v => padT + (1 - (v - min) / range) * plotH);
 
-        // Área
         const grad = ctx.createLinearGradient(0, padT, 0, padT + plotH);
         grad.addColorStop(0, cor + "22");
         grad.addColorStop(1, cor + "00");
@@ -469,7 +479,6 @@ function desenharHistorico() {
         ctx.fillStyle = grad;
         ctx.fill();
 
-        // Linha
         ctx.beginPath();
         ctx.moveTo(xs[0], ys[0]);
         xs.forEach((x, i) => ctx.lineTo(x, ys[i]));
@@ -478,7 +487,6 @@ function desenharHistorico() {
         ctx.lineJoin = "round";
         ctx.stroke();
 
-        // Pontos
         xs.forEach((x, i) => {
             ctx.beginPath();
             ctx.arc(x, ys[i], 2.5, 0, 2 * Math.PI);
@@ -510,15 +518,21 @@ function initHistoricoTooltip() {
         const W = canvas.width;
         const padL = 40, padR = 16;
         const plotW = W - padL - padR;
-        const idx = Math.round(((x - padL) / plotW) * (ndviData.length - 1));
 
-        if (idx >= 0 && idx < ndviData.length) {
+        // Usar dados do período atual
+        const cfg = _historicoAtualDados || getDadosPeriodo(periodoAtivo);
+        const labels = _historicoAtualLabels || cfg.labels;
+        const n = cfg.ndvi.length;
+        const idx = Math.min(n - 1, Math.max(0, Math.round(((x - padL) / plotW) * (n - 1))));
+
+        if (idx >= 0 && idx < n) {
             const cores = getCorDoTema();
+            const labelAtual = labels[idx] || `#${idx + 1}`;
             tooltip.innerHTML = `
-                <strong style="color:var(--text-primary)">${meses[idx]}</strong><br>
-                <span style="color:${cores.ndvi}">NDVI: ${ndviData[idx].toFixed(2)}</span><br>
-                <span style="color:${cores.ndwi}">NDWI: ${ndwiData[idx].toFixed(2)}</span><br>
-                <span style="color:${cores.nbr}">NBR: ${nbrData[idx].toFixed(2)}</span>
+                <strong style="color:var(--text-primary)">${labelAtual}</strong><br>
+                <span style="color:${cores.ndvi}">NDVI: ${cfg.ndvi[idx].toFixed(2)}</span><br>
+                <span style="color:${cores.ndwi}">NDWI: ${cfg.ndwi[idx].toFixed(2)}</span><br>
+                <span style="color:${cores.nbr}">NBR: ${cfg.nbr[idx].toFixed(2)}</span>
             `;
             tooltip.style.display = "block";
             tooltip.style.left = (e.clientX - rect.left + 12) + "px";
@@ -532,7 +546,73 @@ function initHistoricoTooltip() {
 }
 
 // ============================================
-// FILTRO DE PERÍODO (Botões)
+// DATASETS POR PERÍODO
+// ============================================
+
+// Dados base: série anual de 12 meses (Jan–Dez, indexados de 0 a 11)
+const dadosAnuais = {
+    ndvi: [0.72, 0.74, 0.76, 0.73, 0.70, 0.68, 0.71, 0.75, 0.78, 0.81, 0.83, 0.84],
+    ndwi: [0.60, 0.61, 0.62, 0.60, 0.58, 0.56, 0.58, 0.60, 0.62, 0.64, 0.66, 0.67],
+    nbr:  [0.08, 0.07, 0.06, 0.08, 0.10, 0.12, 0.09, 0.07, 0.06, 0.05, 0.05, 0.05],
+};
+
+// Dados sintéticos diários (últimos 30 dias, gerados de forma consistente)
+const dadosDiarios = (function () {
+    const n = 30;
+    // Base seed determinística para evitar variação a cada carregamento
+    const ndvi = [], ndwi = [], nbr = [];
+    for (let i = 0; i < n; i++) {
+        const t = i / (n - 1);
+        ndvi.push(+(0.75 + t * 0.09 + Math.sin(i * 0.7) * 0.015).toFixed(3));
+        ndwi.push(+(0.58 + t * 0.09 + Math.cos(i * 0.5) * 0.012).toFixed(3));
+        nbr.push(+(0.10 - t * 0.05 + Math.sin(i * 0.9) * 0.008).toFixed(3));
+    }
+    return { ndvi, ndwi, nbr };
+})();
+
+const dadosMensais3m = {
+    ndvi: dadosAnuais.ndvi.slice(-3),
+    ndwi: dadosAnuais.ndwi.slice(-3),
+    nbr:  dadosAnuais.nbr.slice(-3),
+};
+
+// Mapeamento de período → configuração de dados e labels
+const periodConfig = {
+    "7d": {
+        labels: ["D-6","D-5","D-4","D-3","D-2","D-1","Hoje"],
+        ndvi: dadosDiarios.ndvi.slice(-7),
+        ndwi: dadosDiarios.ndwi.slice(-7),
+        nbr:  dadosDiarios.nbr.slice(-7),
+    },
+    "30d": {
+        labels: Array.from({length: 30}, (_, i) => i % 5 === 0 ? `D-${29 - i}` : ""),
+        ndvi: dadosDiarios.ndvi,
+        ndwi: dadosDiarios.ndwi,
+        nbr:  dadosDiarios.nbr,
+    },
+    "90d": {
+        labels: ["Mês -2", "Mês -1", "Atual"],
+        ndvi: dadosMensais3m.ndvi,
+        ndwi: dadosMensais3m.ndwi,
+        nbr:  dadosMensais3m.nbr,
+    },
+    "1y": {
+        labels: ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"],
+        ndvi: dadosAnuais.ndvi,
+        ndwi: dadosAnuais.ndwi,
+        nbr:  dadosAnuais.nbr,
+    },
+};
+
+// Período ativo globalmente (compartilhado por mini gráficos e histórico)
+let periodoAtivo = "7d";
+
+function getDadosPeriodo(period) {
+    return periodConfig[period] || periodConfig["7d"];
+}
+
+// ============================================
+// FILTRO DE PERÍODO (Botões) — REAL
 // ============================================
 
 function initFiltroPeriodo() {
@@ -541,10 +621,40 @@ function initFiltroPeriodo() {
         pill.addEventListener("click", () => {
             pills.forEach(p => p.classList.remove("active"));
             pill.classList.add("active");
-            const period = pill.dataset.period;
-            mostrarToast(`📅 Exibindo dados dos últimos ${pill.textContent}`, "info", 2000);
+            periodoAtivo = pill.dataset.period;
+
+            // Atualizar mini gráficos dos cards com dados do período
+            atualizarMiniGraficosPeriodo(periodoAtivo);
+            // Atualizar gráfico histórico
+            desenharHistorico(periodoAtivo);
+            // Atualizar valor final exibido nos cards
+            atualizarValoresCardsPeriodo(periodoAtivo);
+
+            mostrarToast(`📅 Período: ${pill.textContent}`, "info", 1800);
         });
     });
+}
+
+function atualizarMiniGraficosPeriodo(period) {
+    const dados = getDadosPeriodo(period);
+    const cores = getCorDoTema();
+    desenharMiniGrafico("demoMiniNDVI", dados.ndvi, cores.ndvi);
+    desenharMiniGrafico("demoMiniNDWI", dados.ndwi, cores.ndwi);
+    desenharMiniGrafico("demoMiniNBR",  dados.nbr,  cores.nbr);
+}
+
+function atualizarValoresCardsPeriodo(period) {
+    const dados = getDadosPeriodo(period);
+    const lastNdvi = dados.ndvi[dados.ndvi.length - 1];
+    const lastNdwi = dados.ndwi[dados.ndwi.length - 1];
+    const lastNbr  = dados.nbr[dados.nbr.length - 1];
+
+    const elNdvi = document.getElementById("valNDVI");
+    const elNdwi = document.getElementById("valNDWI");
+    const elNbr  = document.getElementById("valNBR");
+    if (elNdvi) elNdvi.textContent = lastNdvi.toFixed(2);
+    if (elNdwi) elNdwi.textContent = lastNdwi.toFixed(2);
+    if (elNbr)  elNbr.textContent  = lastNbr.toFixed(2);
 }
 
 // ============================================
@@ -911,4 +1021,247 @@ let resizeTimer;
 window.addEventListener("resize", () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(redesenharTodos, 200);
+});
+// ============================================
+// QUIZ INTERATIVO
+// ============================================
+
+const quizPerguntas = [
+    {
+        pergunta: "Uma plantação apresentou queda contínua no NDVI durante várias semanas. O que isso pode indicar?",
+        opcoes: ["Vegetação mais saudável", "Possível perda de vegetação", "Excesso de satélites", "Nenhuma alteração relevante"],
+        correta: 1,
+        explicacao: "O NDVI mede a densidade e saúde da vegetação. Valores em queda indicam perda de biomassa, podendo sinalizar estresse hídrico, praga, doença ou degradação do solo."
+    },
+    {
+        pergunta: "Qual índice espectral é mais utilizado para análise de umidade da vegetação e corpos hídricos?",
+        opcoes: ["NDVI", "NBR", "NDWI", "RGB"],
+        correta: 2,
+        explicacao: "O NDWI (Normalized Difference Water Index) é calculado com as bandas verde e infravermelho próximo, sendo ideal para detectar umidade na vegetação e identificar corpos d'água."
+    },
+    {
+        pergunta: "Por que monitorar uma área agrícola com frequência via satélite?",
+        opcoes: ["Apenas para armazenar dados", "Não possui utilidade prática", "Para identificar problemas antes que gerem prejuízos", "Apenas para criar relatórios de compliance"],
+        correta: 2,
+        explicacao: "O monitoramento frequente permite detectar precocemente estresse hídrico, pragas, doenças e degradação vegetal, possibilitando intervenção antes de perdas irreversíveis."
+    },
+    {
+        pergunta: "O satélite Sentinel-2 revisita uma mesma região do Brasil aproximadamente a cada:",
+        opcoes: ["1 dia", "5 dias", "30 dias", "6 meses"],
+        correta: 1,
+        explicacao: "Com dois satélites em órbita (Sentinel-2A e 2B), a constelação da ESA oferece revisita de 5 dias para qualquer ponto da Terra, com resolução espacial de até 10 metros."
+    },
+    {
+        pergunta: "Um valor de NBR próximo de zero ou negativo em uma área previamente vegetada indica:",
+        opcoes: ["Vegetação densa e saudável", "Alta umidade do solo", "Área possivelmente atingida por queimada ou desmatamento", "Cobertura de nuvens na imagem"],
+        correta: 2,
+        explicacao: "O NBR (Normalized Burn Ratio) usa bandas NIR e SWIR. Valores baixos ou negativos indicam baixa refletância no NIR e alta no SWIR, padrão de áreas queimadas ou solo exposto."
+    },
+    {
+        pergunta: "Qual das afirmações sobre o NDVI é correta?",
+        opcoes: ["Valores próximos de 1 indicam solo exposto ou água", "Valores negativos indicam vegetação muito densa", "Valores próximos de 0.8 indicam vegetação densa e saudável", "O NDVI não varia com as estações do ano"],
+        correta: 2,
+        explicacao: "O NDVI varia de -1 a +1. Valores entre 0.6 e 1.0 correspondem à vegetação densa e saudável; próximos de 0 indicam solo exposto ou estresse severo; negativos indicam água ou nuvens."
+    },
+    {
+        pergunta: "Para um produtor que quer detectar seca antes que afete a colheita, qual combinação de índices seria mais útil?",
+        opcoes: ["NBR + RGB", "NDVI + NDWI", "Apenas RGB", "NBR + EVI"],
+        correta: 1,
+        explicacao: "O NDVI monitora a saúde da vegetação e o NDWI avalia o teor de água. Juntos, permitem detectar estresse hídrico precoce — quando o NDWI cai antes de ser visível no campo."
+    },
+    {
+        pergunta: "O que diferencia o Specto de uma simples imagem de satélite?",
+        opcoes: ["Resolução maior", "Apenas colorização diferente", "Transformação de dados orbitais em laudos técnicos interpretáveis", "Acesso a imagens exclusivas de satélites privados"],
+        correta: 2,
+        explicacao: "O Specto processa automaticamente índices espectrais, cruza com dados locais do sensor Proxi e gera laudos em linguagem acessível — transformando terabytes de dados em decisões práticas."
+    }
+];
+
+let quizEstado = {
+    perguntaAtual: 0,
+    pontos: 0,
+    respostas: [], // true/false por pergunta
+    respondida: false,
+};
+
+function initQuiz() {
+    const btnIniciar    = document.getElementById("btnIniciarQuiz");
+    const btnProxima    = document.getElementById("btnProximaPergunta");
+    const btnReiniciar  = document.getElementById("btnReiniciarQuiz");
+
+    if (btnIniciar)   btnIniciar.addEventListener("click", quizIniciar);
+    if (btnProxima)   btnProxima.addEventListener("click", quizProxima);
+    if (btnReiniciar) btnReiniciar.addEventListener("click", quizReiniciar);
+}
+
+function quizIniciar() {
+    quizEstado = { perguntaAtual: 0, pontos: 0, respostas: [], respondida: false };
+    mostrarTela("quizQuestion");
+    quizRenderPergunta();
+}
+
+function quizReiniciar() {
+    mostrarTela("quizStart");
+}
+
+function mostrarTela(id) {
+    ["quizStart", "quizQuestion", "quizResult"].forEach(tid => {
+        const el = document.getElementById(tid);
+        if (el) {
+            if (tid === id) el.classList.remove("quiz-hidden");
+            else el.classList.add("quiz-hidden");
+        }
+    });
+}
+
+function quizRenderPergunta() {
+    const total = quizPerguntas.length;
+    const idx   = quizEstado.perguntaAtual;
+    const p     = quizPerguntas[idx];
+
+    // Progresso
+    const fillEl = document.getElementById("quizProgressFill");
+    const labelEl = document.getElementById("quizProgressLabel");
+    if (fillEl)  fillEl.style.width = ((idx / total) * 100) + "%";
+    if (labelEl) labelEl.textContent = `${idx + 1} / ${total}`;
+
+    // Pontuação
+    const badgeEl = document.getElementById("quizScoreBadge");
+    if (badgeEl) badgeEl.textContent = `${quizEstado.pontos} pts`;
+
+    // Pergunta
+    const qEl = document.getElementById("quizQuestionText");
+    if (qEl) qEl.textContent = p.pergunta;
+
+    // Opções
+    const optsEl = document.getElementById("quizOptions");
+    if (optsEl) {
+        optsEl.innerHTML = "";
+        const letras = ["A", "B", "C", "D"];
+        p.opcoes.forEach((opcao, i) => {
+            const btn = document.createElement("button");
+            btn.className = "quiz-option";
+            btn.innerHTML = `<span class="quiz-option-letter">${letras[i]}</span>${opcao}`;
+            btn.addEventListener("click", () => quizResponder(i));
+            optsEl.appendChild(btn);
+        });
+    }
+
+    // Limpar feedback e botão próxima
+    const fbEl = document.getElementById("quizFeedback");
+    if (fbEl) { fbEl.className = "quiz-feedback"; fbEl.textContent = ""; }
+
+    const btnProx = document.getElementById("btnProximaPergunta");
+    if (btnProx) btnProx.classList.add("quiz-hidden");
+
+    quizEstado.respondida = false;
+}
+
+function quizResponder(indiceEscolhido) {
+    if (quizEstado.respondida) return;
+    quizEstado.respondida = true;
+
+    const p = quizPerguntas[quizEstado.perguntaAtual];
+    const acertou = indiceEscolhido === p.correta;
+
+    if (acertou) quizEstado.pontos++;
+    quizEstado.respostas.push(acertou);
+
+    // Marcar opções
+    const optsEl = document.getElementById("quizOptions");
+    const botoesOpcao = optsEl.querySelectorAll(".quiz-option");
+    botoesOpcao.forEach((btn, i) => {
+        btn.disabled = true;
+        if (i === p.correta) btn.classList.add("correta");
+        else if (i === indiceEscolhido && !acertou) btn.classList.add("errada");
+    });
+
+    // Feedback
+    const fbEl = document.getElementById("quizFeedback");
+    if (fbEl) {
+        fbEl.className = "quiz-feedback " + (acertou ? "acerto" : "erro");
+        fbEl.innerHTML = acertou
+            ? `✓ Correto! ${p.explicacao}`
+            : `✗ Incorreto. ${p.explicacao}`;
+    }
+
+    // Pontuação
+    const badgeEl = document.getElementById("quizScoreBadge");
+    if (badgeEl) badgeEl.textContent = `${quizEstado.pontos} pts`;
+
+    // Botão próxima / resultado
+    const btnProx = document.getElementById("btnProximaPergunta");
+    if (btnProx) {
+        const ehUltima = quizEstado.perguntaAtual >= quizPerguntas.length - 1;
+        btnProx.textContent = ehUltima ? "Ver resultado →" : "Próxima pergunta →";
+        btnProx.classList.remove("quiz-hidden");
+    }
+}
+
+function quizProxima() {
+    quizEstado.perguntaAtual++;
+    if (quizEstado.perguntaAtual >= quizPerguntas.length) {
+        quizMostrarResultado();
+    } else {
+        quizRenderPergunta();
+    }
+}
+
+function quizMostrarResultado() {
+    mostrarTela("quizResult");
+
+    const total  = quizPerguntas.length;
+    const pontos = quizEstado.pontos;
+    const pct    = Math.round((pontos / total) * 100);
+
+    // Ícone e título conforme desempenho
+    const resultados = [
+        { min: 0,   max: 2,  icon: "🌱", titulo: "Continue aprendendo!", msg: "Ainda há muito a descobrir sobre monitoramento orbital. Revise os conceitos de NDVI, NDWI e NBR e tente novamente!" },
+        { min: 3,   max: 4,  icon: "📡", titulo: "Bom começo!",           msg: "Você tem uma base sólida sobre sensoriamento remoto. Com mais prática, você dominará os índices espectrais." },
+        { min: 5,   max: 6,  icon: "🛰️", titulo: "Muito bem!",            msg: "Seu conhecimento em monitoramento orbital é acima da média. Você sabe interpretar os principais índices espectrais." },
+        { min: 7,   max: 7,  icon: "🌿", titulo: "Excelente!",            msg: "Quase perfeito! Você domina sensoriamento remoto agrícola e entende como transformar dados orbitais em decisões práticas." },
+        { min: 8,   max: 8,  icon: "🏆", titulo: "Perfeito!",             msg: "Pontuação máxima! Você tem domínio completo sobre índices espectrais, satélites e monitoramento agrícola. Parabéns!" },
+    ];
+
+    const r = resultados.find(x => pontos >= x.min && pontos <= x.max) || resultados[0];
+
+    const iconEl  = document.getElementById("quizResultIcon");
+    const titleEl = document.getElementById("quizResultTitle");
+    const scoreEl = document.getElementById("quizResultScore");
+    const msgEl   = document.getElementById("quizResultMsg");
+    const barsEl  = document.getElementById("quizResultBars");
+
+    if (iconEl)  iconEl.textContent  = r.icon;
+    if (titleEl) titleEl.textContent = r.titulo;
+    if (scoreEl) scoreEl.textContent = `${pontos} / ${total}`;
+    if (msgEl)   msgEl.textContent   = r.msg;
+
+    // Barras de resumo por pergunta
+    if (barsEl) {
+        barsEl.innerHTML = "";
+        quizEstado.respostas.forEach((acertou, i) => {
+            const row = document.createElement("div");
+            row.className = "quiz-result-bar-row";
+            row.innerHTML = `
+                <span class="quiz-result-bar-label">P${i + 1}: ${quizPerguntas[i].pergunta.slice(0, 28)}…</span>
+                <div class="quiz-result-bar-track">
+                    <div class="quiz-result-bar-fill ${acertou ? 'acerto' : 'erro'}" data-fill="${acertou ? 100 : 100}" style="width:0%"></div>
+                </div>
+                <span class="quiz-result-bar-badge ${acertou ? 'acerto' : 'erro'}">${acertou ? '✓' : '✗'}</span>
+            `;
+            barsEl.appendChild(row);
+        });
+
+        // Animar barras após render
+        setTimeout(() => {
+            barsEl.querySelectorAll(".quiz-result-bar-fill").forEach(bar => {
+                bar.style.width = "100%";
+            });
+        }, 100);
+    }
+}
+
+// Garantir que o quiz inicializa corretamente
+document.addEventListener("DOMContentLoaded", () => {
+    initQuiz();
 });
