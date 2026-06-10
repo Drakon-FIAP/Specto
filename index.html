@@ -23,6 +23,7 @@
             <a href="#beneficios" class="menu-link">Benefícios</a>
             <a href="#dashboard-demo" class="menu-link">Demonstração</a>
             <a href="#planos" class="menu-link">Planos</a>
+            <a href="#quiz" class="menu-link">Quiz</a>
         </nav>
         <div class="theme-switcher">
             <input type="radio" id="tema1" name="tema" checked>
@@ -957,6 +958,57 @@
                         <button class="plano-btn plano-btn-secondary" onclick="abrirModalContato()">Falar com vendas</button>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Quiz -->
+        <section class="quiz-section" id="quiz">
+            <div class="quiz-container">
+                <div class="demo-header">
+                    <span class="problemas-tag">QUIZ INTERATIVO</span>
+                    <h2 class="demo-title reveal-up">Teste seus conhecimentos sobre <span class="highlight-text">monitoramento orbital</span></h2>
+                    <p class="demo-subtitle reveal-up">Perguntas sobre índices espectrais, satélites e tomada de decisão no campo.</p>
+                </div>
+
+                <!-- Tela de início -->
+                <div class="quiz-card" id="quizStart">
+                    <div class="quiz-start-icon">🛰️</div>
+                    <h3 class="quiz-start-title">Pronto para o desafio?</h3>
+                    <p class="quiz-start-desc">8 perguntas sobre NDVI, NDWI, NBR, satélites e monitoramento agrícola. Cada acerto vale 1 ponto.</p>
+                    <div class="quiz-start-meta">
+                        <span class="quiz-meta-item">8 perguntas</span>
+                        <span class="quiz-meta-divider">|</span>
+                        <span class="quiz-meta-item">2 a 3 minutos</span>
+                        <span class="quiz-meta-divider">|</span>
+                        <span class="quiz-meta-item">Pontuação final</span>
+                    </div>
+                    <button class="btn-primary quiz-start-btn" id="btnIniciarQuiz">Iniciar Quiz</button>
+                </div>
+
+                <!-- Tela de pergunta -->
+                <div class="quiz-card quiz-hidden" id="quizQuestion">
+                    <div class="quiz-progress-wrap">
+                        <div class="quiz-progress-bar-bg">
+                            <div class="quiz-progress-bar-fill" id="quizProgressFill"></div>
+                        </div>
+                        <span class="quiz-progress-label" id="quizProgressLabel">1 / 8</span>
+                    </div>
+                    <div class="quiz-score-badge" id="quizScoreBadge">0 pts</div>
+                    <p class="quiz-question-text" id="quizQuestionText"></p>
+                    <div class="quiz-options" id="quizOptions"></div>
+                    <div class="quiz-feedback" id="quizFeedback"></div>
+                    <button class="btn-primary quiz-next-btn quiz-hidden" id="btnProximaPergunta">Próxima pergunta →</button>
+                </div>
+
+                <!-- Tela de resultado -->
+                <div class="quiz-card quiz-hidden" id="quizResult">
+                    <div class="quiz-result-icon" id="quizResultIcon">🏆</div>
+                    <h3 class="quiz-result-title" id="quizResultTitle">Parabéns!</h3>
+                    <div class="quiz-result-score" id="quizResultScore">8 / 8</div>
+                    <p class="quiz-result-msg" id="quizResultMsg"></p>
+                    <div class="quiz-result-bars" id="quizResultBars"></div>
+                    <button class="btn-primary quiz-restart-btn" id="btnReiniciarQuiz">↺ Reiniciar Quiz</button>
                 </div>
             </div>
         </section>
